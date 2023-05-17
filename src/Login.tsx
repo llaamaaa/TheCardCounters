@@ -8,6 +8,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
     const auth = getAuth();
     const navigate = useNavigate();
     const [authing, setAuthing] = useState(false);
+    console.log("hi");
 
     const signInWithGoogle =async () => {
         setAuthing(true);
@@ -31,6 +32,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
             <p>Login Page</p>
             <button onClick={() => signInWithGoogle()} disabled = {authing}>
                 Sign in with Google
+
             </button>
         </div>
     );
