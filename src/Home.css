@@ -14,3 +14,12 @@
     flex-basis: 10%;
     height: 100%;
 }
+
+.mainView {
+    flex-grow: 1;
+    height: 100%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
