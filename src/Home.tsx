@@ -25,7 +25,7 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
             <div className="mainView">
                 <p></p>
                 <a href="https://www.youtube.com/watch?v=PljDuynF-j0&pp=ygUJYmxhY2tqYWNr" target ="_blank">
-                    <img src="src/assets/king_of_spades.png" width={200}></img>
+                    <img src="src/assets/king_of_spades.png" width={200} className="cardimg"></img>
                 </a>
                 
                 <button onClick={() => signOut(auth)} className="logOut">
