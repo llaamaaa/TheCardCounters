@@ -8,3 +8,9 @@
     background-color: blue;
     margin: 0px;
 }
+
+.navbar {
+    background-color: purple;
+    flex-basis: 10%;
+    height: 100%;
+}
