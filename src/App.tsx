@@ -8,6 +8,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import LoginPage from './Login'
 import AuthRoute from './AuthRoute'
 import HomePage from './Home'
+import PlayPage from './Play'
+import LearnPage from './Learn'
+import ForumPage from './Forum'
 
 initializeApp(config.firebaseConfig);
 
@@ -26,6 +29,10 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
           }
         />
       <Route path="/login" element = {<LoginPage />} />
+      <Route path="/Play" element = {<PlayPage />} />
+      <Route path="/Learn" element = {<LearnPage />} />
+      <Route path="/Forum" element = {<ForumPage />} />
+      
 
      </Routes>
     </BrowserRouter>

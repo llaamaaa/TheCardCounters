@@ -1,6 +1,13 @@
 import React, {useState} from "react";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithCredential, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import SignIn from "./SignUpWithEmail";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 
 export interface ILoginPageProps {}
 
@@ -8,6 +15,9 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
     const auth = getAuth();
     const navigate = useNavigate();
     const [authing, setAuthing] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    
 
     const signInWithGoogle =async () => {
         setAuthing(true);
@@ -25,6 +35,30 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
     };
 
 
+    const signIn = (e: { preventDefault: () => void; }) => {
+        console.log('gg');
+        e.preventDefault();
+        signInWithEmailAndPassword(auth, email, password)
+        .then((useCredential) => {
+            console.log(useCredential);  
+        })
+        .catch((error) => {
+            toast.error('💀', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+            console.log(error);
+            console.log("abc");
+        });
+    }
+
+
 
     return (
         <div>
@@ -32,7 +66,28 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
             <button onClick={() => signInWithGoogle()} disabled = {authing}>
                 Sign in with Google
             </button>
+
+            <div className='sign-in-container'>
+            <form onSubmit={(e) => signIn(e)}>
+                
+                <input type="email" placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}></input>
+                <input type="password" placeholder='Enter your password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}>
+                    </input>
+                    <button type="submit">Log In</button>
+            </form>
+        </div> 
+        <div>
+        <a onClick={() => navigate('/SignUpWithEmail')}>
+                Sign Up here!
+            </a>
         </div>
+        <ToastContainer />
+        </div>
+        
     );
 };
 
