@@ -102,7 +102,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
             </form>
         </div> 
         <div>
-        <a onClick={() => navigate('/SignUpWithEmail')}>
+        <a onClick={() => navigate('/SignUpWithEmail')} className="signUp">
                 Sign Up here!
             </a>
         </div>
