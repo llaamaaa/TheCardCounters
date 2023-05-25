@@ -35,28 +35,53 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
     };
 
 
-    const signIn = (e: { preventDefault: () => void; }) => {
-        console.log('gg');
+    // const signIn = (e: { preventDefault: () => void; }) => {
+    //     console.log('gg');
+    //     e.preventDefault();
+    //     signInWithEmailAndPassword(auth, email, password)
+    //     .then((useCredential) => {
+    //         console.log(useCredential);  
+    //     })
+    //     .catch((error) => {
+    //         toast.error('💀', {
+    //             position: "top-right",
+    //             autoClose: 5000,
+    //             hideProgressBar: false,
+    //             closeOnClick: true,
+    //             pauseOnHover: true,
+    //             draggable: true,
+    //             progress: undefined,
+    //             theme: "light",
+    //             });
+    //         console.log(error);
+    //         console.log("abc");
+    //     });
+    // }
+
+    const signIn = (e: React.FormEvent) => {
         e.preventDefault();
+        setAuthing(true);
+    
         signInWithEmailAndPassword(auth, email, password)
-        .then((useCredential) => {
-            console.log(useCredential);  
-        })
-        .catch((error) => {
+          .then((userCredential) => {
+            console.log(userCredential);
+            navigate('/');
+          })
+          .catch((error) => {
             toast.error('💀', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                });
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
             console.log(error);
-            console.log("abc");
-        });
-    }
+            setAuthing(false);
+          });
+      };
 
 
 
@@ -68,7 +93,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
             </button>
 
             <div className='sign-in-container'>
-            <form onSubmit={(e) => signIn(e)}>
+            <form onSubmit={signIn}>
                 
                 <input type="email" placeholder="Enter your email"
                     value={email}
