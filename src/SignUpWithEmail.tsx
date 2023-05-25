@@ -22,31 +22,34 @@ const SignUpWithEmail = () => {
         });
     };
 
+    const handleWordClick = (word: any) => {
+        console.log(`Clicked on word: ${word}`);
+        // Perform navigation to a different page here
+        navigate('/Login');
+      };
+
 return (
         <div>
-            <p>Login Page</p>
-            {/* <button onClick={() => signInWithGoogle()} disabled = {authing}>
-                Sign in with Google
-            </button> */}
+            <h3>Sign up for cardcounters!</h3>
+            <p>Create a free account or <span onClick={() => handleWordClick('login')}>login</span>
+            </p> 
 
             <div className='sign-in-container'>
             <form onSubmit={signIn}>
-                
+                <div>
                 <input type="email" placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}></input>
+                    </div>
                 <input type="password" placeholder='Enter your password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}>
                     </input>
-                    <button type="submit">Log In</button>
+                    <div><button type="submit">Sign up now!</button>
+                    </div>
             </form>
         </div> 
-        <div>
-        <a onClick={() => navigate('/SignUpWithEmail')}>
-                Sign Up here!
-            </a>
-        </div>
+    
         <ToastContainer />
         </div> 
         
