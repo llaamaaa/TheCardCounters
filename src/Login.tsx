@@ -35,28 +35,11 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
     };
 
 
-    // const signIn = (e: { preventDefault: () => void; }) => {
-    //     console.log('gg');
-    //     e.preventDefault();
-    //     signInWithEmailAndPassword(auth, email, password)
-    //     .then((useCredential) => {
-    //         console.log(useCredential);  
-    //     })
-    //     .catch((error) => {
-    //         toast.error('💀', {
-    //             position: "top-right",
-    //             autoClose: 5000,
-    //             hideProgressBar: false,
-    //             closeOnClick: true,
-    //             pauseOnHover: true,
-    //             draggable: true,
-    //             progress: undefined,
-    //             theme: "light",
-    //             });
-    //         console.log(error);
-    //         console.log("abc");
-    //     });
-    // }
+    const handleWordClick = () => {
+        console.log('Clicked on the word');
+        signInWithGoogle();
+    
+      };
 
     const signIn = (e: React.FormEvent) => {
         e.preventDefault();
@@ -111,7 +94,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
         <button onClick={() => signInWithGoogle()} disabled = {authing} className="google">
                 <img src="src/assets/googlejpg.avif" width={50} ></img>
             </button>
-            <p>Google</p>
+            <p className="google" onClick={handleWordClick}>Google</p>
         <ToastContainer />
         </div>
         
