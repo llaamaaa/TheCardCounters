@@ -3,7 +3,6 @@ import { getAuth, GoogleAuthProvider, signInWithCredential, signInWithPopup, cre
 import { useNavigate } from "react-router-dom";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import SignIn from "./SignUpWithEmail";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -88,10 +87,6 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
     return (
         <div>
             <p>Login Page</p>
-            <button onClick={() => signInWithGoogle()} disabled = {authing}>
-                Sign in with Google
-            </button>
-
             <div className='sign-in-container'>
             <form onSubmit={signIn}>
                 
@@ -110,6 +105,12 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
                 Sign Up here!
             </a>
         </div>
+
+        
+        <button onClick={() => signInWithGoogle()} disabled = {authing}>
+                <img src="src/assets/googlejpg.avif" width={50} className="google"></img>
+            </button>
+            <p>Google</p>
         <ToastContainer />
         </div>
         
