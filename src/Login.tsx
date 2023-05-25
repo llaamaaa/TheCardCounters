@@ -5,6 +5,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./Login.css";
 
 
 
@@ -107,8 +108,8 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
         </div>
 
         
-        <button onClick={() => signInWithGoogle()} disabled = {authing}>
-                <img src="src/assets/googlejpg.avif" width={50} className="google"></img>
+        <button onClick={() => signInWithGoogle()} disabled = {authing} className="google">
+                <img src="src/assets/googlejpg.avif" width={50} ></img>
             </button>
             <p>Google</p>
         <ToastContainer />
