@@ -1,5 +1,5 @@
 import { Card, CardSuit, CardValue, randomRange } from "./utils";
-
+import "./Game.css"
 
 const Game: React.FC = () => {
 
@@ -25,14 +25,15 @@ const Game: React.FC = () => {
 
 
     return (
-    <div>
-        Game Screen
+    <div className="gameView">
+        <div className="dealerView">
+            <img src={`src/assets/${secondCard.value}_of_${secondCard.suit}.png`} width={200} className="dealerCard"></img>
+        </div>
+        <div className="playerView">
+            <img src={`src/assets/${firstCard.value}_of_${firstCard.suit}.png`} width={200} className="playerCard1"></img>
+            <img src={`src/assets/${thirdCard.value}_of_${thirdCard.suit}.png`} width={200} className="playerCard2"></img>
+        </div>
         
-            <img src={`src/assets/${firstCard.value}_of_${firstCard.suit}.png`} width={200} className="card"></img>
-            <img src={`src/assets/${secondCard.value}_of_${secondCard.suit}.png`} width={200} className="card"></img>
-            <img src={`src/assets/${thirdCard.value}_of_${thirdCard.suit}.png`} width={200} className="card"></img>
- 
-
     </div>
     )
 
