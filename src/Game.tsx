@@ -1,6 +1,6 @@
 import { Card, CardSuit, CardValue, randomRange } from "./utils";
 import "./Game.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const convertCardValueToNumber = (card: Card) => {
     if (card.value === CardValue.TEN || card.value === CardValue.JACK || card.value === CardValue.QUEEN || card.value === CardValue.KING) {
@@ -23,18 +23,34 @@ const Game: React.FC = () => {
         })
     }));
    
-    console.log(deck);
-    const firstIndex = randomRange(51);
-    setFirstCard(deck[firstIndex]);
-    setDeck(prevState => prevState.filter((_, idx) => idx === firstIndex));
-
-    const secondIndex = randomRange(50);
-    setSecondCard(deck[secondIndex]);
-    setDeck(prevState => prevState.filter((_, idx) => idx === secondIndex));
-
-    const thirdIndex = randomRange(49);
-    setThirdCard(deck[thirdIndex]);
-    setDeck(prevState => prevState.filter((_, idx) => idx === thirdIndex));
+    useEffect(() => {
+        const generateDeck = () => {
+          const newDeck = Object.values(CardValue).flatMap(cardValue => {
+            return Object.values(CardSuit).map(cardSuit => {
+              return { value: cardValue as CardValue, suit: cardSuit as CardSuit };
+            });
+          });
+          setDeck(newDeck);
+        };
+    
+        generateDeck();
+      }, []);
+    
+      useEffect(() => {
+        if (deck.length > 0) {
+          const firstIndex = randomRange(deck.length - 1);
+          setFirstCard(deck[firstIndex]);
+          setDeck(prevState => prevState.filter((_, idx) => idx !== firstIndex));
+    
+          const secondIndex = randomRange(deck.length - 1);
+          setSecondCard(deck[secondIndex]);
+          setDeck(prevState => prevState.filter((_, idx) => idx !== secondIndex));
+    
+          const thirdIndex = randomRange(deck.length - 1);
+          setThirdCard(deck[thirdIndex]);
+          setDeck(prevState => prevState.filter((_, idx) => idx !== thirdIndex));
+        }
+      }, [deck]);
 
     const renderStartScreen = () => {
         return <div>
