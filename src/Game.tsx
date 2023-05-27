@@ -1,43 +1,83 @@
 import { Card, CardSuit, CardValue, randomRange } from "./utils";
 import "./Game.css"
+import { useState } from "react";
+
+const convertCardValueToNumber = (card: Card) => {
+    if (card.value === CardValue.TEN || card.value === CardValue.JACK || card.value === CardValue.QUEEN || card.value === CardValue.KING) {
+        return "10";
+    } else {
+        return card.value;
+    }
+}
+
+
 
 const Game: React.FC = () => {
-
-    const deck: Array<Card> = [];
-    Object.values(CardValue).map(cardValue => {
-        Object.values(CardSuit).map(cardSuit => {
-            deck.push({value: cardValue as CardValue, suit: cardSuit as CardSuit});
+    const [startGame, setStartGame] = useState(false);
+    const [firstCard, setFirstCard] = useState<Card>();
+    const [secondCard, setSecondCard] = useState<Card>();
+    const [thirdCard, setThirdCard] = useState<Card>();
+    const [deck, setDeck] = useState<Array<Card>>(Object.values(CardValue).flatMap(cardValue => {
+        return Object.values(CardSuit).map(cardSuit => {
+            return {value: cardValue as CardValue, suit: cardSuit as CardSuit}
         })
-    })
-
+    }));
+   
+    console.log(deck);
     const firstIndex = randomRange(51);
-    const firstCard = deck[firstIndex];
-    deck.splice(firstIndex, 1);
+    setFirstCard(deck[firstIndex]);
+    setDeck(prevState => prevState.filter((_, idx) => idx === firstIndex));
 
     const secondIndex = randomRange(50);
-    const secondCard = deck[secondIndex];
-    deck.splice(secondIndex, 1);
+    setSecondCard(deck[secondIndex]);
+    setDeck(prevState => prevState.filter((_, idx) => idx === secondIndex));
 
     const thirdIndex = randomRange(49);
-    const thirdCard = deck[thirdIndex];
-    deck.splice(thirdIndex, 1);
+    setThirdCard(deck[thirdIndex]);
+    setDeck(prevState => prevState.filter((_, idx) => idx === thirdIndex));
 
+    const renderStartScreen = () => {
+        return <div>
+            <button onClick={() => setStartGame(true)}>Start Game</button>
+        </div>
+    }
 
-
-    return (
-    <div className="gameView">
+    const renderGame = () => {
+        return (<div className="gameView">
         <div className="dealerView">
-            <img src={`src/assets/${secondCard.value}_of_${secondCard.suit}.png`} width={170} className="dealerCard"></img>
+            <img src={`src/assets/${secondCard?.value}_of_${secondCard?.suit}.png`} width={170} className="dealerCard"></img>
         </div>
         <div className="playerView">
-            <img src={`src/assets/${firstCard.value}_of_${firstCard.suit}.png`} width={170} className="playerCard1"></img>
-            <img src={`src/assets/${thirdCard.value}_of_${thirdCard.suit}.png`} width={170} className="playerCard2"></img>
+            <img src={`src/assets/${firstCard?.value}_of_${firstCard?.suit}.png`} width={170} className="playerCard1"></img>
+            <img src={`src/assets/${thirdCard?.value}_of_${thirdCard?.suit}.png`} width={170} className="playerCard2"></img>
+            <div className="buttonView">
+                <button>
+                    Hit
+                </button>
+                <button>
+                    Stand
+                </button>
+                <div>
+                <button>
+                    Double down 
+                </button>
+                <button disabled={convertCardValueToNumber(firstCard) !== convertCardValueToNumber(thirdCard)}>
+                    Split
+                </button>
+                </div>
+            </div>
         </div>
-        
-    </div>
-    )
+        </div>)
+    }
 
+    return (
+        startGame ? renderGame() : renderStartScreen()
+    )
 }
 
 
 export default Game;
+
+/*
+
+*/
