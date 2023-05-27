@@ -1,12 +1,11 @@
-import { Card } from "./utils";
+import { Card, CardSuit, CardValue, randomRange } from "./utils";
 
-interface GameProps {
-    card: Card;
-}
 
-const Game: React.FC<GameProps> = ({card}) => {
+const Game: React.FC = () => {
 
-    const { value, suit } = card;
+    const randValue = CardValue[Object.keys(CardValue)[randomRange(12)]];
+    const randSuit = CardSuit[Object.keys(CardSuit)[randomRange(3)]];
+    const { value, suit }: Card = {value: randValue, suit: randSuit};
 
 
     return (

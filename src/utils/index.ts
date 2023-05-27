@@ -26,6 +26,11 @@ interface Card {
     suit: CardSuit;   
 }
 
+// gets random between [a, b]
+export const randomRange = (endNumber: number) => {
+    return Math.round(Math.random() * endNumber);
+}
+
 export type { Card };
 
 
