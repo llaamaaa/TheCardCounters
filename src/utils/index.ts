@@ -1,20 +1,20 @@
-enum CardValue {
+export enum CardValue {
     ACE = 'ace',
-    TWO = 'two',
-    THREE = "three",
-    FOUR = "four",
-    FIVE = "five",
-    SIX = "six",
-    SEVEN = "seven",
-    EIGHT = "eight",
-    NINE = "nine",
-    TEN = "ten",
+    TWO = '2',
+    THREE = "3",
+    FOUR = "4",
+    FIVE = "5",
+    SIX = "6",
+    SEVEN = "7",
+    EIGHT = "8",
+    NINE = "9",
+    TEN = "10",
     JACK = "jack",
     QUEEN = "queen",
     KING = 'king'
 }
 
-enum CardSuit {
+export enum CardSuit {
     DIAMONDS = "diamonds",
     CLUBS = 'clubs',
     HEARTS = 'hearts',
@@ -23,10 +23,11 @@ enum CardSuit {
 
 interface Card {
     value: CardValue;
-    suit: string;   
+    suit: CardSuit;   
 }
 
 export type { Card };
+
 
 
 

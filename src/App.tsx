@@ -14,6 +14,7 @@ import ForumPage from './Forum'
 import SignUpWithEmail from './SignUpWithEmail'
 import CardCount from './CardCount'
 import Game from './Game'
+import { CardSuit, CardValue } from './utils'
 
 
 initializeApp(config.firebaseConfig);
@@ -37,7 +38,7 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
       <Route path="/Play" element = {<PlayPage />} />
       <Route path="/Learn" element = {<LearnPage />} />
       <Route path="/Forum" element = {<ForumPage />} />
-      <Route path="/Game" element = {<Game />} />
+      <Route path="/Game" element = {<Game card={{value: CardValue.EIGHT, suit: CardSuit.DIAMONDS}} />} />
       <Route path="/CardCount" element = {<CardCount />} />
       
 
