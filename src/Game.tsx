@@ -50,6 +50,7 @@ const Game: React.FC = () => {
         return (<div className="gameView">
         <div className="dealerView">
             <img src={`src/assets/${secondCard?.value}_of_${secondCard?.suit}.png`} width={130} className="dealerCard"></img>
+            <p>Number of Games played:{gameCount}</p>
         </div>
         <div className="playerView">
             <img src={`src/assets/${firstCard?.value}_of_${firstCard?.suit}.png`} width={130} className="playerCard1"></img>
