@@ -27,11 +27,11 @@ const Game: React.FC = () => {
     return (
     <div className="gameView">
         <div className="dealerView">
-            <img src={`src/assets/${secondCard.value}_of_${secondCard.suit}.png`} width={200} className="dealerCard"></img>
+            <img src={`src/assets/${secondCard.value}_of_${secondCard.suit}.png`} width={170} className="dealerCard"></img>
         </div>
         <div className="playerView">
-            <img src={`src/assets/${firstCard.value}_of_${firstCard.suit}.png`} width={200} className="playerCard1"></img>
-            <img src={`src/assets/${thirdCard.value}_of_${thirdCard.suit}.png`} width={200} className="playerCard2"></img>
+            <img src={`src/assets/${firstCard.value}_of_${firstCard.suit}.png`} width={170} className="playerCard1"></img>
+            <img src={`src/assets/${thirdCard.value}_of_${thirdCard.suit}.png`} width={170} className="playerCard2"></img>
         </div>
         
     </div>
