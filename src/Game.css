@@ -4,11 +4,10 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
-    /* background-image: url(src/assets/poker-table-background-green-color_47243-1068.avif); */
+    background-image: url(src/assets/poker-table-background-green-color_47243-1068.avif);
     background-repeat: no-repeat;
     background-size: cover;
     justify-content: center;
-    background-color: aliceblue;
 
 }
 
@@ -38,5 +37,18 @@
 
 
 .dealerCard {
+    justify-content: center;
+    margin-bottom: 10px;
+}
 
+.gameCount {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.topView {
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
 }

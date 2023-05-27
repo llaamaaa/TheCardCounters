@@ -2,6 +2,7 @@ import { Card, CardSuit, CardValue, myRandomInts, randomRange } from "./utils";
 import "./Game.css"
 import { useEffect, useState } from "react";
 import ModalPopup from "./ModalPopup";
+import { useNavigate } from "react-router-dom";
 
 const convertCardValueToNumber = (card: Card) => {
     if (card.value === CardValue.TEN || card.value === CardValue.JACK || card.value === CardValue.QUEEN || card.value === CardValue.KING) {
@@ -14,6 +15,7 @@ const convertCardValueToNumber = (card: Card) => {
 
 
 const Game: React.FC = () => {
+    const navigate = useNavigate();
     const [startGame, setStartGame] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const [gameCount, setGameCount] = useState(0);
@@ -48,9 +50,13 @@ const Game: React.FC = () => {
 
     const renderGame = () => {
         return (<div className="gameView">
+            <div className="topView">
+                <button onClick={(() => navigate("/Play"))}> Exit </button>
+                <div className="gameCount">Number of Games played:{gameCount}</div >
+
+            </div>
         <div className="dealerView">
             <img src={`src/assets/${secondCard?.value}_of_${secondCard?.suit}.png`} width={130} className="dealerCard"></img>
-            <p>Number of Games played:{gameCount}</p>
         </div>
         <div className="playerView">
             <img src={`src/assets/${firstCard?.value}_of_${firstCard?.suit}.png`} width={130} className="playerCard1"></img>
