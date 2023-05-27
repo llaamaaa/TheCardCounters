@@ -14,6 +14,8 @@ export enum CardValue {
     KING = 'king'
 }
 
+
+
 export enum CardSuit {
     DIAMONDS = "diamonds",
     CLUBS = 'clubs',
@@ -34,7 +36,14 @@ export const randomRange = (endNumber: number) => {
 export type { Card };
 
 
-
+export function myRandomInts(quantity: number, max: number){
+    const arr = []
+    while(arr.length < quantity){
+      var candidateInt = Math.floor(Math.random() * max) + 1
+      if(arr.indexOf(candidateInt) === -1) arr.push(candidateInt)
+    }
+  return(arr)
+  }
 
 
 

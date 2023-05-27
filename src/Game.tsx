@@ -1,6 +1,7 @@
-import { Card, CardSuit, CardValue, randomRange } from "./utils";
+import { Card, CardSuit, CardValue, myRandomInts, randomRange } from "./utils";
 import "./Game.css"
 import { useEffect, useState } from "react";
+import ModalPopup from "./ModalPopup";
 
 const convertCardValueToNumber = (card: Card) => {
     if (card.value === CardValue.TEN || card.value === CardValue.JACK || card.value === CardValue.QUEEN || card.value === CardValue.KING) {
@@ -14,49 +15,36 @@ const convertCardValueToNumber = (card: Card) => {
 
 const Game: React.FC = () => {
     const [startGame, setStartGame] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [gameCount, setGameCount] = useState(0);
     const [firstCard, setFirstCard] = useState<Card>();
     const [secondCard, setSecondCard] = useState<Card>();
     const [thirdCard, setThirdCard] = useState<Card>();
-    const [deck, setDeck] = useState<Array<Card>>(Object.values(CardValue).flatMap(cardValue => {
+    const deck = (Object.values(CardValue).flatMap(cardValue => {
         return Object.values(CardSuit).map(cardSuit => {
             return {value: cardValue as CardValue, suit: cardSuit as CardSuit}
         })
     }));
    
     useEffect(() => {
-        const generateDeck = () => {
-          const newDeck = Object.values(CardValue).flatMap(cardValue => {
-            return Object.values(CardSuit).map(cardSuit => {
-              return { value: cardValue as CardValue, suit: cardSuit as CardSuit };
-            });
-          });
-          setDeck(newDeck);
-        };
-    
-        generateDeck();
-      }, []);
-    
-      useEffect(() => {
-        if (deck.length > 0) {
-          const firstIndex = randomRange(deck.length - 1);
-          setFirstCard(deck[firstIndex]);
-          setDeck(prevState => prevState.filter((_, idx) => idx !== firstIndex));
-    
-          const secondIndex = randomRange(deck.length - 1);
-          setSecondCard(deck[secondIndex]);
-          setDeck(prevState => prevState.filter((_, idx) => idx !== secondIndex));
-    
-          const thirdIndex = randomRange(deck.length - 1);
-          setThirdCard(deck[thirdIndex]);
-          setDeck(prevState => prevState.filter((_, idx) => idx !== thirdIndex));
+        const getCard = () => {
+            const arr = myRandomInts(3, 51);
+            setFirstCard(deck[arr[0]]);
+            setSecondCard(deck[arr[1]]);
+            setThirdCard(deck[arr[2]]);
         }
-      }, [deck]);
+        getCard();
+}, [gameCount]);
+    
+      
 
     const renderStartScreen = () => {
         return <div>
             <button onClick={() => setStartGame(true)}>Start Game</button>
         </div>
     }
+
+    console.log(deck);
 
     const renderGame = () => {
         return (<div className="gameView">
@@ -67,22 +55,25 @@ const Game: React.FC = () => {
             <img src={`src/assets/${firstCard?.value}_of_${firstCard?.suit}.png`} width={170} className="playerCard1"></img>
             <img src={`src/assets/${thirdCard?.value}_of_${thirdCard?.suit}.png`} width={170} className="playerCard2"></img>
             <div className="buttonView">
-                <button>
+                <button  onClick = {() => setModalVisible(true)}>
                     Hit
                 </button>
-                <button>
+                <button onClick={() => setModalVisible(true)}>
                     Stand
                 </button>
                 <div>
-                <button>
+                <button onClick={() => setModalVisible(true)}>
                     Double down 
                 </button>
-                <button disabled={convertCardValueToNumber(firstCard) !== convertCardValueToNumber(thirdCard)}>
+                <button disabled={convertCardValueToNumber(firstCard!) !== convertCardValueToNumber(thirdCard!)} onClick={() => setModalVisible(true)}>
                     Split
                 </button>
                 </div>
             </div>
         </div>
+        {modalVisible && <ModalPopup title="New hand" onPressOk={() => {
+            setModalVisible(false);
+            setGameCount(prevState => prevState+1)}}/>}
         </div>)
     }
 

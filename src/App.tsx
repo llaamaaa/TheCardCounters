@@ -38,7 +38,7 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
       <Route path="/Play" element = {<PlayPage />} />
       <Route path="/Learn" element = {<LearnPage />} />
       <Route path="/Forum" element = {<ForumPage />} />
-      <Route path="/Game" element = {<Game card={{value: CardValue.EIGHT, suit: CardSuit.DIAMONDS}} />} />
+      <Route path="/Game" element = {<Game />} />
       <Route path="/CardCount" element = {<CardCount />} />
       
 
