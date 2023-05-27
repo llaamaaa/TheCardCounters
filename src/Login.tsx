@@ -3,9 +3,9 @@ import { getAuth, GoogleAuthProvider, signInWithCredential, signInWithPopup, cre
 import { useNavigate } from "react-router-dom";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import SignIn from "./SignUpWithEmail";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./Login.css";
 
 
 
@@ -35,40 +35,44 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
     };
 
 
-    const signIn = (e: { preventDefault: () => void; }) => {
-        console.log('gg');
+    const handleWordClick = () => {
+        console.log('Clicked on the word');
+        signInWithGoogle();
+    
+      };
+
+    const signIn = (e: React.FormEvent) => {
         e.preventDefault();
+        setAuthing(true);
+    
         signInWithEmailAndPassword(auth, email, password)
-        .then((useCredential) => {
-            console.log(useCredential);  
-        })
-        .catch((error) => {
+          .then((userCredential) => {
+            console.log(userCredential);
+            navigate('/');
+          })
+          .catch((error) => {
             toast.error('💀', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                });
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
             console.log(error);
-            console.log("abc");
-        });
-    }
+            setAuthing(false);
+          });
+      };
 
 
 
     return (
         <div>
             <p>Login Page</p>
-            <button onClick={() => signInWithGoogle()} disabled = {authing}>
-                Sign in with Google
-            </button>
-
             <div className='sign-in-container'>
-            <form onSubmit={(e) => signIn(e)}>
+            <form onSubmit={signIn}>
                 
                 <input type="email" placeholder="Enter your email"
                     value={email}
@@ -81,10 +85,16 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
             </form>
         </div> 
         <div>
-        <a onClick={() => navigate('/SignUpWithEmail')}>
+        <a onClick={() => navigate('/SignUpWithEmail')} className="signUp">
                 Sign Up here!
             </a>
         </div>
+
+        
+        <button onClick={() => signInWithGoogle()} disabled = {authing} className="google">
+                <img src="src/assets/googlejpg.avif" width={50} ></img>
+            </button>
+            <p className="google" onClick={handleWordClick}>Google</p>
         <ToastContainer />
         </div>
         
