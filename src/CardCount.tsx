@@ -1,6 +1,6 @@
 const CardCount: React.FC = () => {
     return <div>
-        Forum Screen
+        CardCount Screen
     </div>
 }
 
