@@ -49,23 +49,23 @@ const Game: React.FC = () => {
     const renderGame = () => {
         return (<div className="gameView">
         <div className="dealerView">
-            <img src={`src/assets/${secondCard?.value}_of_${secondCard?.suit}.png`} width={170} className="dealerCard"></img>
+            <img src={`src/assets/${secondCard?.value}_of_${secondCard?.suit}.png`} width={130} className="dealerCard"></img>
         </div>
         <div className="playerView">
-            <img src={`src/assets/${firstCard?.value}_of_${firstCard?.suit}.png`} width={170} className="playerCard1"></img>
-            <img src={`src/assets/${thirdCard?.value}_of_${thirdCard?.suit}.png`} width={170} className="playerCard2"></img>
+            <img src={`src/assets/${firstCard?.value}_of_${firstCard?.suit}.png`} width={130} className="playerCard1"></img>
+            <img src={`src/assets/${thirdCard?.value}_of_${thirdCard?.suit}.png`} width={130} className="playerCard2"></img>
             <div className="buttonView">
-                <button  onClick = {() => setModalVisible(true)}>
+                <button  onClick = {() => setModalVisible(true)} disabled = {modalVisible}>
                     Hit
                 </button>
-                <button onClick={() => setModalVisible(true)}>
+                <button onClick={() => setModalVisible(true)} disabled = {modalVisible}>
                     Stand
                 </button>
                 <div>
-                <button onClick={() => setModalVisible(true)}>
+                <button onClick={() => setModalVisible(true)} disabled = {modalVisible}>
                     Double down 
                 </button>
-                <button disabled={convertCardValueToNumber(firstCard!) !== convertCardValueToNumber(thirdCard!)} onClick={() => setModalVisible(true)}>
+                <button disabled={convertCardValueToNumber(firstCard!) !== convertCardValueToNumber(thirdCard!) || modalVisible} onClick={() => setModalVisible(true)}>
                     Split
                 </button>
                 </div>

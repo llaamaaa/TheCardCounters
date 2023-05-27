@@ -1,6 +1,17 @@
 .modalContainer {
-    background-color: blueviolet;
+    background-color: rgba(34, 66, 155);
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    border-radius: 10px;
+
+}
+
+.modalButton {
+    margin-left: 10px;
 }
