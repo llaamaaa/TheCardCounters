@@ -1,0 +1,54 @@
+.gameView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(src/assets/poker-table-background-green-color_47243-1068.avif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center;
+
+}
+
+.playerView {
+    margin-top: 100px;
+    display: flex; 
+    
+}
+
+.dealerView {
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.playerCard1 {
+    margin-top: 30px;
+    margin-right: 35px;
+}
+
+.playerCard2 {
+    position: absolute;
+    margin-left: 35px;
+}
+
+
+
+.dealerCard {
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.gameCount {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.topView {
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+}

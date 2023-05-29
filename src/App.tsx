@@ -14,6 +14,7 @@ import ForumPage from './Forum'
 import SignUpWithEmail from './SignUpWithEmail'
 import CardCount from './CardCount'
 import Game from './Game'
+import { CardSuit, CardValue } from './utils'
 
 
 initializeApp(config.firebaseConfig);

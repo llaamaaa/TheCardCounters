@@ -1,20 +1,22 @@
-enum CardValue {
+export enum CardValue {
     ACE = 'ace',
-    TWO = 'two',
-    THREE = "three",
-    FOUR = "four",
-    FIVE = "five",
-    SIX = "six",
-    SEVEN = "seven",
-    EIGHT = "eight",
-    NINE = "nine",
-    TEN = "ten",
+    TWO = '2',
+    THREE = "3",
+    FOUR = "4",
+    FIVE = "5",
+    SIX = "6",
+    SEVEN = "7",
+    EIGHT = "8",
+    NINE = "9",
+    TEN = "10",
     JACK = "jack",
     QUEEN = "queen",
     KING = 'king'
 }
 
-enum CardSuit {
+
+
+export enum CardSuit {
     DIAMONDS = "diamonds",
     CLUBS = 'clubs',
     HEARTS = 'hearts',
@@ -23,12 +25,25 @@ enum CardSuit {
 
 interface Card {
     value: CardValue;
-    suit: string;   
+    suit: CardSuit;   
+}
+
+// gets random between [a, b]
+export const randomRange = (endNumber: number) => {
+    return Math.round(Math.random() * endNumber);
 }
 
 export type { Card };
 
 
+export function myRandomInts(quantity: number, max: number){
+    const arr = []
+    while(arr.length < quantity){
+      var candidateInt = Math.floor(Math.random() * max) + 1
+      if(arr.indexOf(candidateInt) === -1) arr.push(candidateInt)
+    }
+  return(arr)
+  }
 
 
 
