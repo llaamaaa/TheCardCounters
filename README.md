@@ -37,6 +37,8 @@ users practice card counting while playing blackjack at a casino or online.
 probability of winning, the app might feature simulations of genuine blackjack games.
 
 Proof concept:
+https://drive.google.com/file/d/1caSZmnfUX9kENgsNPj_3jPX5FIO53L4V/view?usp=share_link
+
 
 
 
