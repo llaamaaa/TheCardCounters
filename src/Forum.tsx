@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from './config';
 import { collection, getDocs, addDoc, doc, setDoc , query, onSnapshot} from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 interface Post {
   id: string;
@@ -17,6 +18,7 @@ interface Comment {
 
 
 const ForumPage: React.FC = () => {
+    const navigate = useNavigate();
     const [posts, setPosts] = useState<Post[]>([]);
     const [newPostTitle, setNewPostTitle] = useState('');
     const [newPostContent, setNewPostContent] = useState('');
@@ -171,6 +173,9 @@ const ForumPage: React.FC = () => {
 
       return (
         <div>
+            <div className="navButton" onClick={(() => navigate("/"))}>
+                    Back
+                </div>
           <h2>Forum Page</h2>
           <h2>Create a New Post</h2>
           <input
