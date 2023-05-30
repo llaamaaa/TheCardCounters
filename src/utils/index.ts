@@ -36,7 +36,7 @@ export const randomRange = (endNumber: number) => {
 export type { Card };
 
 
-export function myRandomInts(quantity: number, max: number){
+export function myRandomInts(quantity: number, max: number) {
     const arr = []
     while(arr.length < quantity){
       var candidateInt = Math.floor(Math.random() * max) + 1
