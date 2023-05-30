@@ -1,86 +1,155 @@
-import React, { useEffect, useState } from 'react';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import React, { useState, useEffect } from 'react';
 import { db } from './config';
+import { addDoc, collection, doc, getDocs, onSnapshot, updateDoc } from 'firebase/firestore';
 
 interface Post {
+  id: string;
+  title: string;
+  content: string;
+  comments: Comment[];
+}
+
+interface Comment {
   id: string;
   content: string;
 }
 
 const ForumPage: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
-  const [newPost, setNewPost] = useState('');
+  const [newPostTitle, setNewPostTitle] = useState('');
+  const [newPostContent, setNewPostContent] = useState('');
+  const [newCommentContent, setNewCommentContent] = useState('');
 
   useEffect(() => {
-    fetchPosts();
+    const unsubscribe = onSnapshot(collection(db, 'posts'), (snapshot) => {
+      const fetchedPosts: Post[] = [];
+      snapshot.forEach((postDoc) => {
+        const post = { ...postDoc.data(), id: postDoc.id } as Post;
+        fetchedPosts.push(post);
+      });
+      setPosts(fetchedPosts);
+    });
+  
+    return () => unsubscribe();
   }, []);
+  
+  
+
 
   const fetchPosts = async () => {
     try {
-      const querySnapshot = await getDocs(collection(db, 'posts'));
-      const postData = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        content: doc.data().content,
-      }));
-      setPosts(postData);
+      const postsSnapshot = await getDocs(collection(db, 'posts'));
+      const fetchedPosts: Post[] = [];
+      postsSnapshot.forEach((postDoc) => {
+        const post = { ...postDoc.data(), id: postDoc.id } as Post;
+        fetchedPosts.push(post);
+      });
+      setPosts(fetchedPosts);
     } catch (error) {
-      console.error('Error fetching posts:', error);
+      console.log('Error fetching posts:', error);
     }
   };
-
-  const handlePostChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setNewPost(event.target.value);
-  };
-
-  const handlePostSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  
+  const createPost = async (e: React.FormEvent) => {
+    e.preventDefault();
+  
     try {
-      // Create a new post object
-      const post = {
-        content: newPost,
+      const postDocRef = await addDoc(collection(db, 'posts'), {
+        title: newPostTitle,
+        content: newPostContent,
+        comments: [],
+      });
+      const newPost: Post = {
+        id: postDocRef.id,
+        title: newPostTitle,
+        content: newPostContent,
+        comments: [],
       };
-
-      // Save the new post to Firebase
-      const docRef = await addDoc(collection(db, 'posts'), post);
-
-      // Add the new post to the posts array
-      setPosts((prevPosts) => [
-        ...prevPosts,
-        { id: docRef.id, content: post.content },
-      ]);
-
-      // Clear the new post input field
-      setNewPost('');
+      setPosts((prevPosts) => [...prevPosts, newPost]);
+      setNewPostTitle('');
+      setNewPostContent('');
     } catch (error) {
-      console.error('Error creating post:', error);
+      console.log('Error creating post:', error);
     }
   };
+  
+  const addComment = async (postId: string) => {
+    try {
+      const postRef = doc(db, 'posts', postId);
+      const commentDocRef = await addDoc(collection(postRef, 'comments'), {
+        content: newCommentContent,
+      });
+      const newComment: Comment = {
+        id: commentDocRef.id,
+        content: newCommentContent,
+      };
+      setPosts((prevPosts) =>
+        prevPosts.map((post) => {
+          if (post.id === postId) {
+            return {
+              ...post,
+              comments: [...post.comments, newComment],
+            };
+          }
+          return post;
+        })
+      );
+      setNewCommentContent('');
+    } catch (error) {
+      console.log('Error adding comment:', error);
+    }
+  };
+  
+  
+  
 
   return (
     <div>
-      <h2>Blackjack Strategy Forum</h2>
-
+      <h2>Forum</h2>
       <div>
-        <h3>Posts:</h3>
-        {posts.map((post) => (
-          <div key={post.id}>{post.content}</div>
-        ))}
-      </div>
-
-      <div>
-        <h3>Create a New Post:</h3>
-        <form onSubmit={handlePostSubmit}>
-          <textarea
-            value={newPost}
-            onChange={handlePostChange}
-            placeholder="Write your post..."
-            rows={4}
-            cols={50}
+        <form onSubmit={createPost}>
+          <input
+            type="text"
+            placeholder="Post Title"
+            value={newPostTitle}
+            onChange={(e) => setNewPostTitle(e.target.value)}
           />
-          <br />
-          <button type="submit">Post</button>
+          <textarea
+            placeholder="Post Content"
+            value={newPostContent}
+            onChange={(e) => setNewPostContent(e.target.value)}
+          ></textarea>
+          <button type="submit">Create Post</button>
         </form>
+      </div>
+      <div>
+        {posts.map((post) => (
+          <div key={post.id}>
+            <h3>{post.title}</h3>
+            <p>{post.content}</p>
+            <div>
+            <form
+                onSubmit={(e) => {
+                e.preventDefault();
+                addComment(post.id);
+                }}>
+            <input
+            type="text"
+            placeholder="Comment"
+            value={newCommentContent}
+            onChange={(e) => setNewCommentContent(e.target.value)}/>
+            <button type="submit">Add Comment</button>
+            </form>
+
+            </div>
+            <div>
+  {post.comments && post.comments.map((comment) => (
+    <p key={comment.id}>{(comment as Comment).content}</p>
+  ))}
+</div>
+
+          </div>
+        ))}
       </div>
     </div>
   );
