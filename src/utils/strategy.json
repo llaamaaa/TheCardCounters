@@ -1,7 +1,65 @@
 {
-    "ace" : {
-        "aceace": {
-            "Action" : "split"
-        } 
+    "ace": {
+        "aceace": "split",
+        "ace_2": "hit",
+        "ace_3": "hit",
+        "ace_4": "hit",
+        "ace_5": "hit",
+        "ace_6": "hit",
+        "ace_7": "hit",
+        "ace_8": "stand",
+        "ace_9": "stand",
+        "2_2": "split",
+        "2_3": "split",
+        "2_4": "split",
+        "2_5": "split",
+        "2_6": "split",
+        "2_7": "split",
+        "2_8": "split",
+        "2_9": "split",
+        "2_10": "split",
+        "2_jack": "split",
+        "2_queen": "split",
+        "2_king": "split",
+
+        "3_3": "split",
+        "4_4": "split",
+        "5_5": "split",
+        "6_6": "split",
+        "7_7": "split",
+        "8_8": "split",
+        "9_9": "split"
+        
+    },
+    "2": {
+        "aceace": "split",
+        "2": "split",
+        "3": "split",
+        "4": "split",
+        "5": "split",
+        "6": "split",
+        "7": "split",
+        "8": "split",
+        "9": "split",
+        "10": "stand",
+        "jack": "stand",
+        "queen": "stand",
+        "king": "stand"
+    },
+    "3": {
+        "aceace": "split",
+        "2": "split",
+        "3": "split",
+        "4": "split",
+        "5": "split",
+        "6": "split",
+        "7": "split",
+        "8": "split",
+        "9": "split",
+        "10": "stand",
+        "jack": "stand",
+        "queen": "stand",
+        "king": "stand"
     }
+    
 }
