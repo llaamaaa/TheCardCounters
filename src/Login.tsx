@@ -77,10 +77,15 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
                 <input type="email" placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}></input>
+                    <div></div>
                 <input type="password" placeholder='Enter your password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}>
-                    </input>
+                    </input> 
+                    <div></div><a onClick={() => navigate('/PasswordReset')} className="signUp">
+                Forgot password?
+            </a>
+                    <div></div>
                     <button type="submit">Log In</button>
             </form>
         </div> 
