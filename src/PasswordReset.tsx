@@ -5,6 +5,7 @@ import { app, auth } from "./config";
 import { getAuth } from "@firebase/auth";
 
 const PasswordReset: React.FunctionComponent = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
   
@@ -12,6 +13,7 @@ const PasswordReset: React.FunctionComponent = () => {
       try {
         await firebase.auth().sendPasswordResetEmail(email);
         alert('Password Reset Email Sent!');
+        s
       } catch (error: any) {
         const errorCode = error.code;
         
@@ -46,7 +48,10 @@ const PasswordReset: React.FunctionComponent = () => {
         <div></div>
         <button onClick={sendPasswordReset}>Send Password Reset Email</button>
         {errorMessage && <p>{errorMessage}</p>}
-        <h5>Dont't have an account? Sign up</h5>
+        <h5>Dont't have an account? <a onClick={() => navigate('/SignUpWithEmail')} className="signUp">
+                Sign Up
+            </a></h5>
+        
       </div>
     
     );
