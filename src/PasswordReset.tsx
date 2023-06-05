@@ -13,7 +13,7 @@ const PasswordReset: React.FunctionComponent = () => {
       try {
         await firebase.auth().sendPasswordResetEmail(email);
         alert('Password Reset Email Sent!');
-        s
+        navigate('/');
       } catch (error: any) {
         const errorCode = error.code;
         
