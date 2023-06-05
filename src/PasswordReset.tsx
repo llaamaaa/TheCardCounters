@@ -14,26 +14,41 @@ const PasswordReset: React.FunctionComponent = () => {
         alert('Password Reset Email Sent!');
       } catch (error: any) {
         const errorCode = error.code;
-        const errorMessage = error.message;
-        if (errorCode === 'auth/invalid-email' || errorCode === 'auth/user-not-found') {
-          setErrorMessage(errorMessage);
+        
+        if (errorCode === 'auth/invalid-email') {    
+          setErrorMessage("You have entered an invalid email.");
+        } else if (errorCode === 'auth/user-not-found')  {
+            setErrorMessage("Email not found. Try Again?");
+        } else {
+            setErrorMessage("Please fill in this field👆🏻");
         }
-        console.log(error);
+       
       }
     };
+   
   
     return (
       <div>
+        <h3> 
+            Forgot your password
+        </h3>
+        <h5>
+            Enter the email address associated with your account and we'll send you a link to reset your password.
+        </h5>
+        <h5></h5>
         <input
           type="email"
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
+          
         />
+        <div></div>
         <button onClick={sendPasswordReset}>Send Password Reset Email</button>
         {errorMessage && <p>{errorMessage}</p>}
+        <h5>Dont't have an account? Sign up</h5>
       </div>
+    
     );
   };
 
