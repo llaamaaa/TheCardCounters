@@ -1,33 +1,40 @@
-const PasswordReset: React.FunctionComponent = () => {
-    const auth = getAuth();
-    const navigate = useNavigate();
+import firebase from "firebase/compat/app";
+import { Component, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { app, auth } from "./config";
+import { getAuth } from "@firebase/auth";
 
+const PasswordReset: React.FunctionComponent = () => {
+    const [email, setEmail] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+  
+    const sendPasswordReset = async () => {
+      try {
+        await firebase.auth().sendPasswordResetEmail(email);
+        alert('Password Reset Email Sent!');
+      } catch (error: any) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        if (errorCode === 'auth/invalid-email' || errorCode === 'auth/user-not-found') {
+          setErrorMessage(errorMessage);
+        }
+        console.log(error);
+      }
+    };
+  
     return (
-        <div className="homeContainer">
-            <div>
-                <div className="navButton" onClick={(() => navigate("/Play"))}>
-                    Play!
-                </div>
-                <div className="navButton" onClick={(() => navigate("/Learn"))}>
-                    Learn!
-                </div>
-                <div className="navButton" onClick={(() => navigate("/Forum"))}>
-                    Forum!
-                </div>
-            </div>
-            <div className="mainView">
-                <p></p>
-                <a href="https://www.youtube.com/watch?v=PljDuynF-j0&pp=ygUJYmxhY2tqYWNr" target ="_blank">
-                    <img src="src/assets/king_of_spades.png" width={200} className="cardimg"></img>
-                </a>
-                
-                <button onClick={() => signOut(auth)} className="logOut">
-                Sign out
-            </button>
-            </div>
-        
-        </div>
+      <div>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+        />
+        <button onClick={sendPasswordReset}>Send Password Reset Email</button>
+        {errorMessage && <p>{errorMessage}</p>}
+      </div>
     );
-};
+  };
 
 export default PasswordReset;
