@@ -5,7 +5,7 @@ import ModalPopup from "./ModalPopup";
 import { useNavigate } from "react-router-dom";
 import data from './utils/strategy.json';
 
-const convertCardValueToNumber = (card: Card) => {
+export const convertCardValueToNumber = (card: Card) => {
     if (card.value === CardValue.TEN || card.value === CardValue.JACK || card.value === CardValue.QUEEN || card.value === CardValue.KING) {
         return "10";
     } else {
@@ -39,8 +39,19 @@ const Game: React.FC = () => {
             setThirdCard(deck[arr[2]]);
         }
         getCard();
-}, [gameCount]);
-    
+    }, [gameCount]);
+
+    useEffect(() => {
+        const card1 = firstCard ? convertCardValueToNumber(firstCard) : "";
+        const card3 = thirdCard ? convertCardValueToNumber(thirdCard) : "";
+
+
+        if (card1 + "" + card3 === "ace10" || card1 + "" + card3 === "10ace") {
+        setModalVisible(true);
+        setButtonClick("blackjack");
+        }
+    }, [firstCard, thirdCard]);
+
       
     const btnClickFn = (text: String) => {
         setModalVisible(true);
@@ -80,7 +91,8 @@ const Game: React.FC = () => {
                 <button onClick={() => btnClickFn("double")} disabled = {modalVisible}>
                     Double down 
                 </button>
-                <button disabled={convertCardValueToNumber(firstCard!) !== convertCardValueToNumber(thirdCard!) || modalVisible} onClick={() => setModalVisible(true)}>
+                <button disabled={!firstCard || !thirdCard || convertCardValueToNumber(firstCard!) !== convertCardValueToNumber(thirdCard!) || modalVisible} onClick={() => setModalVisible(true)}>
+
                     Split
                 </button>
                 </div>
@@ -100,6 +112,3 @@ const Game: React.FC = () => {
 
 export default Game;
 
-/*
-
-*/

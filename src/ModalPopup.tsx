@@ -1,6 +1,7 @@
 import './ModalPopup.css'
 import { Card, CardSuit, CardValue, myRandomInts, randomRange } from "./utils";
 import data from './utils/strategy.json';
+import { convertCardValueToNumber } from './Game';
 
 interface ModalPopupProps {
     title: string;
@@ -16,24 +17,23 @@ interface DataProps{} {
 }
 
 const checkplay = (firstCard: Card | undefined,secondCard: Card|undefined,thirdCard: Card|undefined,btnClicked : String) => {
-    const x = data[firstCard["value"]]
-    /*string key = ""
-    if (x[secondCard["value"] + "_" + thirdCard["value"] in data) {
+    const x = data[secondCard["value"]]
+    const card1 = convertCardValueToNumber(firstCard);
+    const card3 = convertCardValueToNumber(thirdCard);
+    if (card1 + "" + card3 === "ace10" || card1 + "" + card3 === "10ace") {
+        return 'blackjack!'
+    }
 
-    } else {
-
-    }*/
-
-    if (x[secondCard["value"] + "_" + thirdCard["value"]] == btnClicked) {
-        return "Win"
+    else if (x[card1 + "_" + card3] == btnClicked) {
+        return "Win";
     } else{
-return"loser hahah"
+        return "loser hahah";
     }
 
 }
 
 const ModalPopup: React.FC<ModalPopupProps> = ({title, onPressOk, firstCard, secondCard, thirdCard, btnClicked}) => {
-    console.log(firstCard,secondCard,thirdCard,btnClicked)
+    console.log(firstCard,secondCard,thirdCard,btnClicked, 'fuck')
     console.log(checkplay(firstCard,secondCard,thirdCard,btnClicked))
     return <div className='modalContainer'>
         {checkplay(firstCard,secondCard,thirdCard,btnClicked)}
