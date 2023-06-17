@@ -70,18 +70,29 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 
     return (
         <div>
-            <p>Login Page</p>
+            
             <div className='sign-in-container'>
             <form onSubmit={signIn}>
-                
-                <input type="email" placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}></input>
-                    <div></div>
-                <input type="password" placeholder='Enter your password'
+                <div className="inputemail">
+                    <input className="input__field" id = "email" type ='email' required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}>
+                    </input>
+                    <label htmlFor="email" className ="input__label" >Email</label>
+                    <span className="input__icon-wrapper">
+                        <i className="input__icon ri eye-off-line"></i>
+                    </span>
+                </div><div></div>
+                <div className="inputpw">
+                <input className="input__field" id = "password" type ='password' required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}>
                     </input> 
+                    <label htmlFor="password" className ="input__label" >Password</label>
+                    <span className="input__icon-wrapper">
+                        <i className="input__icon ri eye-off-line"></i>
+                    </span>
+                </div>
                     <div></div><a onClick={() => navigate('/PasswordReset')} className="signUp">
                 Forgot password?
             </a>
