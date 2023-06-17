@@ -99,20 +99,21 @@ const ForumPage: React.FC = () => {
       const addComment = async (postId: string) => {
         const content = newCommentContent[postId];
         if (!content) {
-            return; // Exit early if the comment content is empty
-  }
+          return; // Exit early if the comment content is empty
+        }
+      
         try {
           const postRef = doc(db, 'posts', postId);
           const commentsCollectionRef = collection(postRef, 'comments');
-          
+      
           const newComment: Comment = {
             id: '', // Initialize the id property
             content: newCommentContent[postId],
           };
-          
+      
           const commentDocRef = await addDoc(commentsCollectionRef, newComment);
           newComment.id = commentDocRef.id;
-          
+      
           const updatedPosts = posts.map((post) => {
             if (post.id === postId) {
               return {
@@ -122,16 +123,20 @@ const ForumPage: React.FC = () => {
             }
             return post;
           });
-          
+      
           setPosts(updatedPosts);
           setNewCommentContent((prevContent) => ({
             ...prevContent,
             [postId]: '', // Clear the comment content for the specific post
           }));
+      
+          // Update the comments subcollection in Firebase
+          await setDoc(postRef, { comments: updatedPosts.find((post) => post.id === postId)?.comments }, { merge: true });
         } catch (error) {
           console.log('Error adding comment:', error);
         }
       };
+      
       
       
       
