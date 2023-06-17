@@ -24,17 +24,16 @@ const checkplay = (firstCard: Card | undefined,secondCard: Card|undefined,thirdC
         return 'blackjack!'
     }
 
-
-    else if (x[firstCard?.value + "_" + thirdCard?.value] == btnClicked) {
+    else if (x[card1 + "_" + card3] == btnClicked) {
         return "Win";
     } else{
-return "loser hahah";
+        return "loser hahah";
     }
 
 }
 
 const ModalPopup: React.FC<ModalPopupProps> = ({title, onPressOk, firstCard, secondCard, thirdCard, btnClicked}) => {
-    console.log(firstCard,secondCard,thirdCard,btnClicked)
+    console.log(firstCard,secondCard,thirdCard,btnClicked, 'fuck')
     console.log(checkplay(firstCard,secondCard,thirdCard,btnClicked))
     return <div className='modalContainer'>
         {checkplay(firstCard,secondCard,thirdCard,btnClicked)}

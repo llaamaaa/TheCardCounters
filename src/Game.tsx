@@ -34,13 +34,24 @@ const Game: React.FC = () => {
         const getCard = () => {
             const arr = myRandomInts(3, 51);
             console.log(deck[arr[1]])
-            setFirstCard(deck[0]);
+            setFirstCard(deck[arr[0]]);
             setSecondCard(deck[arr[1]]);
             setThirdCard(deck[arr[2]]);
         }
         getCard();
-}, [gameCount]);
-    
+    }, [gameCount]);
+
+    useEffect(() => {
+        const card1 = firstCard ? convertCardValueToNumber(firstCard) : "";
+        const card3 = thirdCard ? convertCardValueToNumber(thirdCard) : "";
+
+
+        if (card1 + "" + card3 === "ace10" || card1 + "" + card3 === "10ace") {
+        setModalVisible(true);
+        setButtonClick("blackjack");
+        }
+    }, [firstCard, thirdCard]);
+
       
     const btnClickFn = (text: String) => {
         setModalVisible(true);
@@ -80,7 +91,8 @@ const Game: React.FC = () => {
                 <button onClick={() => btnClickFn("double")} disabled = {modalVisible}>
                     Double down 
                 </button>
-                <button disabled={convertCardValueToNumber(firstCard!) !== convertCardValueToNumber(thirdCard!) || modalVisible} onClick={() => setModalVisible(true)}>
+                <button disabled={!firstCard || !thirdCard || convertCardValueToNumber(firstCard!) !== convertCardValueToNumber(thirdCard!) || modalVisible} onClick={() => setModalVisible(true)}>
+
                     Split
                 </button>
                 </div>
@@ -100,6 +112,3 @@ const Game: React.FC = () => {
 
 export default Game;
 
-/*
-
-*/
