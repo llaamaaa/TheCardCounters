@@ -16,18 +16,12 @@ interface DataProps{} {
 }
 
 const checkplay = (firstCard: Card | undefined,secondCard: Card|undefined,thirdCard: Card|undefined,btnClicked : String) => {
-    const x = data[firstCard["value"]]
-    /*string key = ""
-    if (x[secondCard["value"] + "_" + thirdCard["value"] in data) {
+    const x = data[secondCard["value"]]
 
-    } else {
-
-    }*/
-
-    if (x[secondCard["value"] + "_" + thirdCard["value"]] == btnClicked) {
-        return "Win"
+    if (x[firstCard["value"] + "_" + thirdCard["value"]] == btnClicked) {
+        return "Win";
     } else{
-return"loser hahah"
+return "loser hahah";
     }
 
 }
