@@ -5,7 +5,7 @@ import ModalPopup from "./ModalPopup";
 import { useNavigate } from "react-router-dom";
 import data from './utils/strategy.json';
 
-const convertCardValueToNumber = (card: Card) => {
+export const convertCardValueToNumber = (card: Card) => {
     if (card.value === CardValue.TEN || card.value === CardValue.JACK || card.value === CardValue.QUEEN || card.value === CardValue.KING) {
         return "10";
     } else {
@@ -34,7 +34,7 @@ const Game: React.FC = () => {
         const getCard = () => {
             const arr = myRandomInts(3, 51);
             console.log(deck[arr[1]])
-            setFirstCard(deck[arr[0]]);
+            setFirstCard(deck[0]);
             setSecondCard(deck[arr[1]]);
             setThirdCard(deck[arr[2]]);
         }
