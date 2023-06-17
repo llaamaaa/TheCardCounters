@@ -10,10 +10,14 @@
     cursor: pointer;
 }
 
-.inputpw, .inputemail {
+.inputpw {
   position: relative;
   margin-bottom: 33px;
-  
+}
+
+.inputemail {
+  position: relative;
+  margin-bottom: 33px;
 }
 
 .input__field {
@@ -36,15 +40,15 @@
   transition: transform 0.25s;
 }
 
-.input__field:focus-visible ~ .input__label, 
-.input__field:valid ~ .input__label {
+.input__field:focus-visible ~ .input__label,
+.input__field:valid ~ .input__label,
+.input__field:placeholder-shown ~ .input__label {
   transform: translate(0, -30px) scale(0.8);
   color: #d1c5fc;
 }
 
-.input__field:is(:focus-visible, :valid) {
-  outline-color: #d1c5fc;
-}
+
+
 
 .input__icon-wrapper {
   position: absolute;
