@@ -6,6 +6,8 @@ import 'firebase/compat/auth';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
+import eyeSlash from "../src/assets/eye_slash.png";
+import eye from "../src/assets/eye.png";
 
 
 
@@ -17,6 +19,11 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
     const [authing, setAuthing] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleTogglePassword = () => {
+        setShowPassword(!showPassword);
+      };
     
 
     const signInWithGoogle =async () => {
@@ -111,13 +118,24 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
                     </span>
                 </div>
                 <div className="inputpw">
-                <input className="input__field" id = "password" type ='password' required
+                <input className="input__field" id = "password" type={showPassword ? 'text' : 'password'} required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}>
                     </input> 
                     <label htmlFor="password" className ="input__label" >Password</label>
                     <span className="input__icon-wrapper">
-                        <i className="input__icon ri eye-off-line"></i>
+                    <i
+                        className={`input__icon ri ${showPassword ? 'eye-off-line' : 'eye-line'}`}
+                        >
+                            <a onClick={handleTogglePassword}>
+                            <img
+                                src={showPassword ? eyeSlash : eye}
+                                alt={showPassword ? "Hide" : "Show"}
+                                width={20}
+                            />
+                            </a>
+                        </i>
+
                     </span>
                 </div>
                     <div></div><a onClick={() => navigate('/PasswordReset')} className="signUp">
