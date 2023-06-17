@@ -79,7 +79,9 @@ const Game: React.FC = () => {
             <div className="topView">
                 <button onClick={(() => navigate("/Play"))}> Exit </button>
                 <div className="gameCount">
-                    <h1>Number of Correct: {correctGameCount}</h1>Number of Games played:{gameCount}</div >
+                    <p>Number of Correct: {correctGameCount}</p>
+                    <p>Number of Games played:{gameCount}</p>
+                    <p>Percentage correct: {(correctGameCount / gameCount * 100).toPrecision(3)}%</p></div >
 
             </div>
         <div className="dealerView">
