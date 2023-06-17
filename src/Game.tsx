@@ -1,7 +1,7 @@
 import { Card, CardSuit, CardValue, myRandomInts, randomRange } from "./utils";
 import "./Game.css"
 import { useEffect, useState } from "react";
-import ModalPopup from "./ModalPopup";
+import ModalPopup, { checkplay } from "./ModalPopup";
 import { useNavigate } from "react-router-dom";
 import data from './utils/strategy.json';
 
@@ -20,6 +20,7 @@ const Game: React.FC = () => {
     const [startGame, setStartGame] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const [gameCount, setGameCount] = useState(0);
+    const [correctGameCount, setCorrectGameCount] = useState(0);
     const [firstCard, setFirstCard] = useState<Card>();
     const [secondCard, setSecondCard] = useState<Card>();
     const [thirdCard, setThirdCard] = useState<Card>();
@@ -33,7 +34,7 @@ const Game: React.FC = () => {
     useEffect(() => {
         const getCard = () => {
             const arr = myRandomInts(3, 51);
-            console.log(deck[arr[1]])
+           
             setFirstCard(deck[arr[0]]);
             setSecondCard(deck[arr[1]]);
             setThirdCard(deck[arr[2]]);
@@ -64,13 +65,23 @@ const Game: React.FC = () => {
         </div>
     }
 
-    console.log(deck);
+    const handleGameResult = () => {
+        const result = checkplay(firstCard, secondCard, thirdCard, buttonClick);
+        if (result === "Win" || result === "blackjack!") {
+          return true;
+        }
+        return false;
+      };
 
     const renderGame = () => {
+        
         return (<div className="gameView">
             <div className="topView">
                 <button onClick={(() => navigate("/Play"))}> Exit </button>
-                <div className="gameCount">Number of Games played:{gameCount}</div >
+                <div className="gameCount">
+                    <p>Number of Correct: {correctGameCount}</p>
+                    <p>Number of Games played:{gameCount}</p>
+                    <p>Percentage correct: {(correctGameCount / gameCount * 100).toPrecision(3)}%</p></div >
 
             </div>
         <div className="dealerView">
@@ -100,7 +111,11 @@ const Game: React.FC = () => {
         </div>
         {modalVisible && <ModalPopup title="New hand" btnClicked={buttonClick} firstCard = {firstCard} secondCard = {secondCard} thirdCard = {thirdCard} onPressOk={() => {
             setModalVisible(false);
-            setGameCount(prevState => prevState+1)}}/>}
+            setGameCount(prevState => prevState+1);
+            if (handleGameResult()) {
+                setCorrectGameCount(prevState => prevState + 1)
+            }}}/>}
+            
         </div>)
     }
 
