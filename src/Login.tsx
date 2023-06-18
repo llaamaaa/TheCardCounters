@@ -103,8 +103,8 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 
     return (
         <div> 
-            <div className="homeButton" onClick={(() => window.location.reload())}>
-                <img src="src/assets/king_of_spades.png" width={50} ></img>
+            <div>
+                <img src="src/assets/king_of_spades.png" width={75}  className="loginButton" onClick={(() => window.location.reload())}></img>
             </div>
             <div className='sign-in-container'>
                 <form onSubmit={signIn}>
@@ -143,24 +143,26 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 
                     </span>
                 </div>
-                    <div></div><a onClick={() => navigate('/PasswordReset')} className="signUp">
+                <div>
+                    <a onClick={() => navigate('/PasswordReset')} className="signUp">
                 Forgot password?
-            </a>
+                </a>
+                </div>
                     <div></div>
                     <button type="submit">Log In</button>
             </form>
         </div> 
         <div>
+        <button onClick={() => signInWithGoogle()} disabled = {authing} className="google-button">
+                <img src="src/assets/googlejpg.avif" width={50} className="google-icon"></img>
+                <span className="google-text">Sign up with Google</span>
+            </button>
+        
         <a onClick={() => navigate('/SignUpWithEmail')} className="signUp">
-                Sign Up here!
+                New? Sign Up - and learning Blackjack!
             </a>
         </div>
-
-        
-        <button onClick={() => signInWithGoogle()} disabled = {authing} className="google">
-                <img src="src/assets/googlejpg.avif" width={50} ></img>
-            </button>
-            <p className="google" onClick={handleWordClick}>Google</p>
+            
         <ToastContainer />
         </div>
         
