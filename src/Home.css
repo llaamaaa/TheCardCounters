@@ -68,3 +68,12 @@
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
+.homeButton {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+

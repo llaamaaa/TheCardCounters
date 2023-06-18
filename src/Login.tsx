@@ -92,15 +92,20 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
       const isEmailValid = (email: string) => {
   // Perform your custom validation logic here
   // You can use regular expressions or any other technique to validate the email format
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+        };
+
+    
 
 
 
 
     return (
         <div> 
+            <div className="homeButton" onClick={(() => window.location.reload())}>
+                <img src="src/assets/king_of_spades.png" width={50} ></img>
+            </div>
             <div className='sign-in-container'>
                 <form onSubmit={signIn}>
                 <div className="inputemail">
