@@ -12,6 +12,9 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
     return (
         <div className="homeContainer">
             <div>
+                <img src="src/assets/king_of_spades.png" width={75}  className="homeButton" onClick={(() => window.location.reload())}></img>
+            </div>
+            <div>
                 <div className="navButton" onClick={(() => navigate("/Play"))}>
                     Play!
                 </div>

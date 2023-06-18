@@ -72,10 +72,10 @@
 .homeButton {
     padding: 10px 15px;
     display: flex;
-    justify-content: left;
+    justify-content: center;
     cursor: pointer;
-    margin-bottom: 100px;
-    transform: translate(-555px, -85px)
+    margin-bottom: 555px;
+    transform: translateX(30px);
     
 }
 
