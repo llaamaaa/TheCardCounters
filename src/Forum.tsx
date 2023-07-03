@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from './config';
-import { collection, getDocs, addDoc, doc, setDoc , query, onSnapshot} from 'firebase/firestore';
+import { collection, getDocs, addDoc, doc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 interface Post {
@@ -23,7 +23,7 @@ const ForumPage: React.FC = () => {
     const [newPostTitle, setNewPostTitle] = useState('');
     const [newPostContent, setNewPostContent] = useState('');
     // const [newCommentContent, setNewCommentContent] = useState<string>('');
-    const [commentContents, setCommentContents] = useState<{ [postId: string]: string }>({});
+    // const [commentContents, setCommentContents] = useState<{ [postId: string]: string }>({});
     type NewCommentContent = { [postId: string]: string };
 
     const [newCommentContent, setNewCommentContent] = useState<NewCommentContent>({});
@@ -51,22 +51,22 @@ const ForumPage: React.FC = () => {
       }, []);
       
 
-    const fetchPosts = async () => {
-        try {
-          const postsSnapshot = await getDocs(collection(db, 'posts'));
-          const fetchedPosts: Post[] = [];
-          postsSnapshot.forEach((postDoc) => {
-            const post = {
-              id: postDoc.id,
-              ...postDoc.data(),
-            } as Post;
-            fetchedPosts.push(post);
-          });
-          setPosts(fetchedPosts);
-        } catch (error) {
-          console.log('Error fetching posts:', error);
-        }
-      };
+    // const fetchPosts = async () => {
+    //     try {
+    //       const postsSnapshot = await getDocs(collection(db, 'posts'));
+    //       const fetchedPosts: Post[] = [];
+    //       postsSnapshot.forEach((postDoc) => {
+    //         const post = {
+    //           id: postDoc.id,
+    //           ...postDoc.data(),
+    //         } as Post;
+    //         fetchedPosts.push(post);
+    //       });
+    //       setPosts(fetchedPosts);
+    //     } catch (error) {
+    //       console.log('Error fetching posts:', error);
+    //     }
+    //   };
       
   
     const createPost = async (e: React.FormEvent) => {

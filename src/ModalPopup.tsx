@@ -1,5 +1,5 @@
 import './ModalPopup.css'
-import { Card, CardSuit, CardValue, myRandomInts, randomRange } from "./utils";
+import { Card } from "./utils";
 import data from './utils/strategy.json';
 import { convertCardValueToNumber } from './Game';
 
@@ -12,11 +12,11 @@ interface ModalPopupProps {
     btnClicked: String;
 }
 
-interface DataProps{} {
+// interface DataProps{} {
 
-}
+// }
 
-export const checkplay = (firstCard: Card | undefined,secondCard: Card|undefined,thirdCard: Card|undefined,btnClicked : String) => {
+export const checkplay = (firstCard: Card , secondCard: Card,thirdCard: Card,btnClicked : String) => {
     const x = data[convertCardValueToNumber(secondCard)];
     const card1 = convertCardValueToNumber(firstCard);
     const card3 = convertCardValueToNumber(thirdCard);
@@ -32,7 +32,7 @@ export const checkplay = (firstCard: Card | undefined,secondCard: Card|undefined
 
 }
 
-const ModalPopup: React.FC<ModalPopupProps> = ({title, onPressOk, firstCard, secondCard, thirdCard, btnClicked}) => {
+const ModalPopup: React.FC<ModalPopupProps> = ({onPressOk, firstCard, secondCard, thirdCard, btnClicked}) => {
     return <div className='modalContainer'>
         {checkplay(firstCard,secondCard,thirdCard,btnClicked)}
         <button onClick={() => onPressOk()} className='modalButton'>Ok</button>

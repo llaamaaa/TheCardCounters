@@ -1,15 +1,15 @@
-import { Card, CardSuit, CardValue, myRandomInts, randomRange } from "./utils";
+import { Card, CardSuit, CardValue, myRandomInts, getValue} from "./utils";
 import "./Game.css"
 import { useEffect, useState } from "react";
 import ModalPopup, { checkplay } from "./ModalPopup";
 import { useNavigate } from "react-router-dom";
-import data from './utils/strategy.json';
+// import data from './utils/strategy.json';
 
 export const convertCardValueToNumber = (card: Card) => {
     if (card.value === CardValue.TEN || card.value === CardValue.JACK || card.value === CardValue.QUEEN || card.value === CardValue.KING) {
         return "10";
     } else {
-        return card.value;
+        return getValue(card.value);
     }
 }
 

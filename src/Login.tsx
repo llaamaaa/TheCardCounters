@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import { getAuth, GoogleAuthProvider, signInWithCredential, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import firebase from 'firebase/compat/app';
+// import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,7 +13,7 @@ import eye from "../src/assets/eye.png";
 
 export interface ILoginPageProps {}
 
-const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
+const LoginPage: React.FunctionComponent<ILoginPageProps> = () => {
     const auth = getAuth();
     const navigate = useNavigate();
     const [authing, setAuthing] = useState(false);
@@ -42,11 +42,11 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
     };
 
 
-    const handleWordClick = () => {
-        console.log('Clicked on the word');
-        signInWithGoogle();
+    // const handleWordClick = () => {
+    //     console.log('Clicked on the word');
+    //     signInWithGoogle();
     
-      };
+    //   };
 
       const signIn = (e: React.FormEvent) => {
         e.preventDefault();
@@ -112,8 +112,8 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
                     <input className={`input__field ${isEmailValid(email) ? 'invalid' : ''}`} id = "email" type ='text' required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        onBlur={(e) => {
-                            const inputValue = e.target.value;
+                        onBlur={() => {
+                            // const inputValue = e.target.value;
                             isEmailValid(email);
                           }}>
                     </input>

@@ -14,7 +14,9 @@ export enum CardValue {
     KING = 'king'
 }
 
-
+export function getValue(value: CardValue): string {
+    return value;
+}
 
 export enum CardSuit {
     DIAMONDS = "diamonds",
