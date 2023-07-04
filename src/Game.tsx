@@ -15,6 +15,8 @@ export const convertCardValueToNumber = (card: Card) => {
 
 
 
+
+
 const Game: React.FC = () => {
     const navigate = useNavigate();
     const [startGame, setStartGame] = useState(false);

@@ -5,9 +5,9 @@ import { convertCardValueToNumber } from './Game';
 
 interface ModalPopupProps {
     title: string;
-    firstCard: Card | undefined;
-    secondCard: Card | undefined;
-    thirdCard: Card | undefined; 
+    firstCard: Card;
+    secondCard: Card;
+    thirdCard: Card; 
     onPressOk: () => void;
     btnClicked: String;
 }

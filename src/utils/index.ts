@@ -25,6 +25,11 @@ export enum CardSuit {
     SPADES = "spades"
 }
 
+// export const AceClub:Card = () =>  {
+//     return Card
+//     // MAKE A CONSTRUCTOR
+// }
+
 interface Card {
     value: CardValue;
     suit: CardSuit;   
