@@ -5,7 +5,7 @@
     width: 100vw;
     justify-content: center;
     align-items: center;
-    background-color: RGB(135, 135, 135);
+    background-color: darkgreen;
     margin: 0px;
 }
 
@@ -18,7 +18,7 @@
 .mainView {
     flex-grow: 1;
     height: 100%;
-    background-color: RGB(51, 51, 51);
+    background-color: rgba(245, 245, 220, 0.795);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,6 +39,7 @@
 }
 
 @keyframes rotate-animation {
+
 	0% {
 		transform: rotate(0deg);
   }
@@ -46,7 +47,7 @@
 		transform: rotate(180deg);
 	}
 	100% {
-		transform: rotate(360deg);
+		transform: rotate(-360deg);
 	}
 }
 

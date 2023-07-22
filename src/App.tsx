@@ -12,7 +12,7 @@ import PlayPage from './Play'
 import LearnPage from './Learn'
 import ForumPage from './Forum'
 import SignUpWithEmail from './SignUpWithEmail'
-import CardCount from './CardCount'
+// import CardCount from './CardCount'
 import Game from './Game'
 // import { CardSuit, CardValue } from './utils'
 import PasswordReset from './PasswordReset'
@@ -40,7 +40,7 @@ const App: React.FunctionComponent<IApplicationProps> = () => {
       <Route path="/Learn" element = {<LearnPage />} />
       <Route path="/Forum" element = {<ForumPage />} />
       <Route path="/Game" element = {<Game />} />
-      <Route path="/CardCount" element = {<CardCount />} />
+      {/* <Route path="/CardCount" element = {<CardCount />} /> */}
       <Route path="/PasswordReset" element = {<PasswordReset />} />
       
 
