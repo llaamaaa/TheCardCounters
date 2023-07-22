@@ -1,17 +1,19 @@
-import { Card, CardSuit, CardValue, myRandomInts, randomRange } from "./utils";
+import { Card, CardSuit, CardValue, myRandomInts, getValue} from "./utils";
 import "./Game.css"
 import { useEffect, useState } from "react";
 import ModalPopup, { checkplay } from "./ModalPopup";
 import { useNavigate } from "react-router-dom";
-import data from './utils/strategy.json';
+
 
 export const convertCardValueToNumber = (card: Card) => {
     if (card.value === CardValue.TEN || card.value === CardValue.JACK || card.value === CardValue.QUEEN || card.value === CardValue.KING) {
         return "10";
     } else {
-        return card.value;
+        return getValue(card.value);
     }
 }
+
+
 
 
 
@@ -66,7 +68,7 @@ const Game: React.FC = () => {
     }
 
     const handleGameResult = () => {
-        const result = checkplay(firstCard, secondCard, thirdCard, buttonClick);
+        const result = checkplay(firstCard!, secondCard!, thirdCard!, buttonClick);
         if (result === "Win" || result === "blackjack!") {
           return true;
         }
@@ -85,11 +87,11 @@ const Game: React.FC = () => {
 
             </div>
         <div className="dealerView">
-            <img src={`src/assets/${secondCard?.value}_of_${secondCard?.suit}.png`} width={130} className="dealerCard"></img>
+            <img src={`/assets/${secondCard?.value}_of_${secondCard?.suit}.png`} width={130} className="dealerCard"></img>
         </div>
         <div className="playerView">
-            <img src={`src/assets/${firstCard?.value}_of_${firstCard?.suit}.png`} width={130} className="playerCard1"></img>
-            <img src={`src/assets/${thirdCard?.value}_of_${thirdCard?.suit}.png`} width={130} className="playerCard2"></img>
+            <img src={`/assets/${firstCard?.value}_of_${firstCard?.suit}.png`} width={130} className="playerCard1"></img>
+            <img src={`/assets/${thirdCard?.value}_of_${thirdCard?.suit}.png`} width={130} className="playerCard2"></img>
             <div className="buttonView">
                 <button  onClick = {() => btnClickFn("hit")} disabled = {modalVisible}>
                     Hit
@@ -109,7 +111,7 @@ const Game: React.FC = () => {
                 </div>
             </div>
         </div>
-        {modalVisible && <ModalPopup title="New hand" btnClicked={buttonClick} firstCard = {firstCard} secondCard = {secondCard} thirdCard = {thirdCard} onPressOk={() => {
+        {modalVisible && <ModalPopup title="New hand" btnClicked={buttonClick} firstCard = {firstCard!} secondCard = {secondCard!} thirdCard = {thirdCard!} onPressOk={() => {
             setModalVisible(false);
             setGameCount(prevState => prevState+1);
             if (handleGameResult()) {

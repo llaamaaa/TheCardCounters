@@ -14,7 +14,9 @@ export enum CardValue {
     KING = 'king'
 }
 
-
+export function getValue(value: CardValue): string {
+    return value;
+}
 
 export enum CardSuit {
     DIAMONDS = "diamonds",
@@ -22,6 +24,11 @@ export enum CardSuit {
     HEARTS = 'hearts',
     SPADES = "spades"
 }
+
+// export const AceClub:Card = () =>  {
+//     return Card
+//     // MAKE A CONSTRUCTOR
+// }
 
 interface Card {
     value: CardValue;

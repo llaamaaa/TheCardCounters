@@ -1,4 +1,4 @@
-{
+const blackjackData = {
     "ace": {
         "ace_ace": "split",
         "ace_2": "hit",
@@ -2210,3 +2210,5 @@
     
 
 }
+
+export default blackjackData;

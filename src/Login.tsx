@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import { getAuth, GoogleAuthProvider, signInWithCredential, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import firebase from 'firebase/compat/app';
+// import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,7 +13,7 @@ import eye from "../src/assets/eye.png";
 
 export interface ILoginPageProps {}
 
-const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
+const LoginPage: React.FunctionComponent<ILoginPageProps> = () => {
     const auth = getAuth();
     const navigate = useNavigate();
     const [authing, setAuthing] = useState(false);
@@ -42,11 +42,11 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
     };
 
 
-    const handleWordClick = () => {
-        console.log('Clicked on the word');
-        signInWithGoogle();
+    // const handleWordClick = () => {
+    //     console.log('Clicked on the word');
+    //     signInWithGoogle();
     
-      };
+    //   };
 
       const signIn = (e: React.FormEvent) => {
         e.preventDefault();
@@ -92,23 +92,28 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
       const isEmailValid = (email: string) => {
   // Perform your custom validation logic here
   // You can use regular expressions or any other technique to validate the email format
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+        };
+
+    
 
 
 
 
     return (
         <div> 
+            <div>
+                <img src="src/assets/king_of_spades.png" width={75}  className="loginButton" onClick={(() => window.location.reload())}></img>
+            </div>
             <div className='sign-in-container'>
                 <form onSubmit={signIn}>
                 <div className="inputemail">
                     <input className={`input__field ${isEmailValid(email) ? 'invalid' : ''}`} id = "email" type ='text' required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        onBlur={(e) => {
-                            const inputValue = e.target.value;
+                        onBlur={() => {
+                            // const inputValue = e.target.value;
                             isEmailValid(email);
                           }}>
                     </input>
@@ -138,24 +143,26 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 
                     </span>
                 </div>
-                    <div></div><a onClick={() => navigate('/PasswordReset')} className="signUp">
+                <div>
+                    <a onClick={() => navigate('/PasswordReset')} className="signUp">
                 Forgot password?
-            </a>
+                </a>
+                </div>
                     <div></div>
                     <button type="submit">Log In</button>
             </form>
         </div> 
         <div>
+        <button onClick={() => signInWithGoogle()} disabled = {authing} className="google-button">
+                <img src="src/assets/googlejpg.avif" width={50} className="google-icon"></img>
+                <span className="google-text">Sign up with Google</span>
+            </button>
+        
         <a onClick={() => navigate('/SignUpWithEmail')} className="signUp">
-                Sign Up here!
+                New? Sign Up - and learning Blackjack!
             </a>
         </div>
-
-        
-        <button onClick={() => signInWithGoogle()} disabled = {authing} className="google">
-                <img src="src/assets/googlejpg.avif" width={50} ></img>
-            </button>
-            <p className="google" onClick={handleWordClick}>Google</p>
+            
         <ToastContainer />
         </div>
         

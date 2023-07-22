@@ -5,7 +5,7 @@
     width: 100vw;
     justify-content: center;
     align-items: center;
-    background-color: blue;
+    background-color: darkgreen;
     margin: 0px;
 }
 
@@ -18,7 +18,7 @@
 .mainView {
     flex-grow: 1;
     height: 100%;
-    background-color: red;
+    background-color: rgba(245, 245, 220, 0.795);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,6 +30,8 @@
     justify-content: center;
     cursor: pointer;
     transition: all 0.5s;
+    font-size: larger;
+    font-weight: bold;
 }
 
 .navButton:hover {
@@ -37,6 +39,7 @@
 }
 
 @keyframes rotate-animation {
+
 	0% {
 		transform: rotate(0deg);
   }
@@ -44,7 +47,7 @@
 		transform: rotate(180deg);
 	}
 	100% {
-		transform: rotate(360deg);
+		transform: rotate(-360deg);
 	}
 }
 
@@ -68,3 +71,15 @@
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
+.homeButton {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 555px;
+    transform: translateX(30px);
+    
+}
+
+

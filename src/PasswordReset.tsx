@@ -1,8 +1,8 @@
 import firebase from "firebase/compat/app";
-import { Component, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { app, auth } from "./config";
-import { getAuth } from "@firebase/auth";
+// import { app, auth } from "./config";
+// import { getAuth } from "@firebase/auth";
 
 const PasswordReset: React.FunctionComponent = () => {
     const navigate = useNavigate();
