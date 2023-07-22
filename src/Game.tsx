@@ -87,11 +87,11 @@ const Game: React.FC = () => {
 
             </div>
         <div className="dealerView">
-            <img src={`src/assets/${secondCard?.value}_of_${secondCard?.suit}.png`} width={130} className="dealerCard"></img>
+            <img src={`/assets/${secondCard?.value}_of_${secondCard?.suit}.png`} width={130} className="dealerCard"></img>
         </div>
         <div className="playerView">
-            <img src={`src/assets/${firstCard?.value}_of_${firstCard?.suit}.png`} width={130} className="playerCard1"></img>
-            <img src={`src/assets/${thirdCard?.value}_of_${thirdCard?.suit}.png`} width={130} className="playerCard2"></img>
+            <img src={`/assets/${firstCard?.value}_of_${firstCard?.suit}.png`} width={130} className="playerCard1"></img>
+            <img src={`/assets/${thirdCard?.value}_of_${thirdCard?.suit}.png`} width={130} className="playerCard2"></img>
             <div className="buttonView">
                 <button  onClick = {() => btnClickFn("hit")} disabled = {modalVisible}>
                     Hit
