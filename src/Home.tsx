@@ -12,7 +12,7 @@ const HomePage: React.FunctionComponent<IHomePageProps> = () => {
     return (
         <div className="homeContainer">
             <div>
-                <img src="src/assets/king_of_spades.png" width={75}  className="homeButton" onClick={(() => window.location.reload())}></img>
+                <img src="/assets/king_of_spades.png" width={75}  className="homeButton" onClick={(() => window.location.reload())}></img>
             </div>
             <div>
                 <div className="navButton" onClick={(() => navigate("/Play"))}>
@@ -28,7 +28,7 @@ const HomePage: React.FunctionComponent<IHomePageProps> = () => {
             <div className="mainView">
                 <p></p>
                 <a href="https://www.youtube.com/watch?v=PljDuynF-j0&pp=ygUJYmxhY2tqYWNr" target ="_blank">
-                    <img src="src/assets/king_of_spades.png" width={200} className="cardimg"></img>
+                    <img src="/assets/king_of_spades.png" width={200} className="cardimg"></img>
                 </a>
                 
                 <button onClick={() => signOut(auth)} className="logOut">
