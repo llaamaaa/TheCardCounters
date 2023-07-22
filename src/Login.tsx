@@ -104,7 +104,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = () => {
     return (
         <div> 
             <div>
-                <img src="src/assets/king_of_spades.png" width={75}  className="loginButton" onClick={(() => window.location.reload())}></img>
+                <img src="/assets/king_of_spades.png" width={75}  className="loginButton" onClick={(() => window.location.reload())}></img>
             </div>
             <div className='sign-in-container'>
                 <form onSubmit={signIn}>
