@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import ModalPopup, { checkplay } from "./ModalPopup";
 import { useNavigate } from "react-router-dom";
 import { update } from "firebase/database";
+import { AiOutlineQuestionCircle } from "react-icons/ai";
+
 // import data from './utils/strategy.json';
 
 export const convertCardValueToNumber = (card: Card) => {
@@ -113,6 +115,8 @@ const CardCount: React.FC = () => {
             </div>
         <div className="dealerView">
             <img src={`src/assets/${secondCard?.value}_of_${secondCard?.suit}.png`} width={130} className="dealerCard"></img>
+            <img src={`src/assets/facedown.png`} width={130} className="dealerCard"></img>
+
         </div>
         <div className="playerView">
             <img src={`src/assets/${firstCard?.value}_of_${firstCard?.suit}.png`} width={130} className="playerCard1"></img>
@@ -121,7 +125,7 @@ const CardCount: React.FC = () => {
             <form onSubmit={(e) => e.preventDefault()}>
   <input
     type="number"
-    placeholder="Enter the current count"
+    placeholder="Enter current count"
     onChange={(e) => {
       setTextInput(e.target.value);
     }}
@@ -129,8 +133,11 @@ const CardCount: React.FC = () => {
   <button type="button" disabled={modalVisible} onClick={() => {
     setModalVisible(true);
   }}>
-    What is the current count?
+    Submit
   </button>
+  <button onClick={(() => navigate("/CardCountingPage"))} style={{position: 'absolute', bottom: '50px', right: '50px', background: 'none' }}>
+            <AiOutlineQuestionCircle style={{ fontSize: '50px'}}/>
+            </button>
 </form>
 
             </div>
@@ -144,10 +151,11 @@ const CardCount: React.FC = () => {
                     setCorrectGameCount(prevState => prevState + 1);
                 }
                 
-            } } firstCard={firstCard!} secondCard={secondCard!} thirdCard={thirdCard!} win={handleCardCountResult(parseInt(textInput))} isCardCount={true}/>}
+            } } firstCard={firstCard!} secondCard={secondCard!} thirdCard={thirdCard!} win={handleCardCountResult(parseInt(textInput))} isCardCount={true} correctAns={currentCardCount.toString()}/>}
             
             Previous Card Count: {previousCardCount}
         </div>)
+        
     }
 
     return (

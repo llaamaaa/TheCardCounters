@@ -3,6 +3,7 @@ import "./Game.css"
 import { useEffect, useState } from "react";
 import ModalPopup, { checkplay } from "./ModalPopup";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineQuestionCircle } from "react-icons/ai";
 
 
 export const convertCardValueToNumber = (card: Card) => {
@@ -70,14 +71,14 @@ const Game: React.FC = () => {
     const handleGameResult = () => {
         const result = checkplay(firstCard!, secondCard!, thirdCard!, buttonClick, false, false);
         console.log('result', result);
-        if (result === "Win" || result === "blackjack!") {
+        if (result === "Correct!" || result === "blackjack!") {
           return true;
         }
         return false;
       };
 
     const renderGame = () => {
-        
+
         return (<div className="gameView">
             <div className="topView">
                 <button onClick={(() => navigate("/Play"))}> Exit </button>
@@ -89,6 +90,8 @@ const Game: React.FC = () => {
             </div>
         <div className="dealerView">
             <img src={`/assets/${secondCard?.value}_of_${secondCard?.suit}.png`} width={130} className="dealerCard"></img>
+            <img src={`src/assets/facedown.png`} width={130} className="dealerCard"></img>
+
         </div>
         <div className="playerView">
             <img src={`/assets/${firstCard?.value}_of_${firstCard?.suit}.png`} width={130} className="playerCard1"></img>
@@ -118,7 +121,9 @@ const Game: React.FC = () => {
             if (handleGameResult()) {
                 setCorrectGameCount(prevState => prevState + 1)
             }}}/>}
-            
+            <button onClick={(() => navigate("/Learn"))} style={{position: 'absolute', bottom: '50px', right: '50px', background: 'none' }}>
+            <AiOutlineQuestionCircle style={{ fontSize: '50px'}}/>
+            </button>
         </div>)
     }
 

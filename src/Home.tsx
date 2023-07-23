@@ -21,7 +21,7 @@ const HomePage: React.FunctionComponent<IHomePageProps> = () => {
                 <div className="navButton" onClick={(() => navigate("/Play"))}>
                     <BiJoystick/> Play! 
                 </div>
-                <div className="navButton" onClick={(() => navigate("/Learn"))}>
+                <div className="navButton" onClick={(() => navigate("/LearnOption"))}>
                     <FaGraduationCap/> Learn!
                 </div>
                 <div className="navButton" onClick={(() => navigate("/Forum"))}>

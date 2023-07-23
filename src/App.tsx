@@ -17,6 +17,8 @@ import Game from './Game'
 // import { CardSuit, CardValue } from './utils'
 import PasswordReset from './PasswordReset'
 import CreatePostPage from './createForum'
+import CardCountingPage from './CardCountingPage'
+import LearnOptionPage from './LearnOption'
 
 
 initializeApp(config.firebaseConfig);
@@ -44,6 +46,8 @@ const App: React.FunctionComponent<IApplicationProps> = () => {
       <Route path="/CardCount" element = {<CardCount />} />
       <Route path="/PasswordReset" element = {<PasswordReset />} />
       <Route path='/CreatePost' element={<CreatePostPage/>}/>
+      <Route path='/CardCountingPage' element={<CardCountingPage/>}/>
+      <Route path='/LearnOption' element={<LearnOptionPage/>}/>
      </Routes>
     </BrowserRouter>
   );
