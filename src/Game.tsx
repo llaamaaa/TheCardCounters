@@ -90,7 +90,7 @@ const Game: React.FC = () => {
             </div>
         <div className="dealerView">
             <img src={`/assets/${secondCard?.value}_of_${secondCard?.suit}.png`} width={130} className="dealerCard"></img>
-            <img src={`src/assets/facedown.png`} width={130} className="dealerCard"></img>
+            <img src={`/assets/facedown.png`} width={130} className="dealerCard"></img>
 
         </div>
         <div className="playerView">

@@ -32,7 +32,7 @@ const PasswordReset: React.FunctionComponent = () => {
     return (
       <div>
         <a onClick={() => navigate('/')} className="HomeButton">
-        <img src="src/assets/king_of_spades.png" width={50} className="cardimg"></img>
+        <img src="/assets/king_of_spades.png" width={50} className="cardimg"></img>
             </a>
         <h3> 
             Forgot your password
