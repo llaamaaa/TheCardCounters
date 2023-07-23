@@ -154,7 +154,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = () => {
         </div> 
         <div>
         <button onClick={() => signInWithGoogle()} disabled = {authing} className="google-button">
-                <img src="src/assets/googlejpg.avif" width={50} className="google-icon"></img>
+                <img src="/assets/googlejpg.avif" width={50} className="google-icon"></img>
                 <span className="google-text">Sign up with Google</span>
             </button>
         
