@@ -22,6 +22,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    row-gap: 48px;
 }
 
 .navButton {
@@ -32,6 +34,8 @@
     transition: all 0.5s;
     font-size: larger;
     font-weight: bold;
+    align-items: center;
+    column-gap: 10px;
 }
 
 .navButton:hover {
@@ -82,4 +86,9 @@
     
 }
 
+.heading {
+    position:absolute;
+    
+
+}
 

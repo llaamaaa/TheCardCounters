@@ -104,7 +104,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = () => {
     return (
         <div> 
             <div>
-                <img src="src/assets/king_of_spades.png" width={75}  className="loginButton" onClick={(() => window.location.reload())}></img>
+                <img src="/assets/king_of_spades.png" width={75}  className="loginButton" onClick={(() => window.location.reload())}></img>
             </div>
             <div className='sign-in-container'>
                 <form onSubmit={signIn}>
@@ -154,7 +154,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = () => {
         </div> 
         <div>
         <button onClick={() => signInWithGoogle()} disabled = {authing} className="google-button">
-                <img src="src/assets/googlejpg.avif" width={50} className="google-icon"></img>
+                <img src="/assets/googlejpg.avif" width={50} className="google-icon"></img>
                 <span className="google-text">Sign up with Google</span>
             </button>
         

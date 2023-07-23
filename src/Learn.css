@@ -1,0 +1,75 @@
+.backButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border-radius: 8px;
+    
+}
+/* Learn.css */
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.learn-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.section-heading {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: left; /* Left-align the headings */
+}
+
+.section-subheading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    text-align: left; /* Left-align the subheadings */
+}
+
+.sub-subheading {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: left; /* Left-align the sub-subheadings */
+}
+
+.intro-paragraph,
+.body-text {
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.action-list {
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    list-style-type: disc;
+    padding-left: 30px;
+}
+
+.strategy-chart-image {
+    display: block;
+    max-width: 100%;
+    margin: 20px auto;
+  }
+
+  .card-counting-image {
+    display: block;
+    max-width: 100%;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  

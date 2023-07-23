@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./Play.css";
 
-const PlayPage: React.FC = () => {
+const LearnOptionPage: React.FC = () => {
     
     const navigate = useNavigate();
     
@@ -11,11 +11,11 @@ const PlayPage: React.FC = () => {
                     Back
                 </div>
         
-        <div className="navButton gameButton" onClick={(() => navigate("/Game"))}>
-                    Basic Strategy Practice!
+        <div className="navButton gameButton" onClick={(() => navigate("/Learn"))}>
+                    Learn Basic Strategy!
                 </div>
-         <div className="navButton gameButton" onClick={(() => navigate("/CardCount"))}>
-                    Card Counting Practice!
+         <div className="navButton gameButton" onClick={(() => navigate("/CardCountingPage"))}>
+                    Learn Card Counting!
                 </div>
     </div>
     
@@ -23,4 +23,4 @@ const PlayPage: React.FC = () => {
     
 }
 
-export default PlayPage;
+export default LearnOptionPage;
