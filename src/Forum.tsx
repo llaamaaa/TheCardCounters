@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { db } from './config';
 import { collection, getDocs, addDoc, doc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import './Forum.css'
+import CreatePostPage from './createForum';
 
 interface Post {
   id: string;
@@ -154,18 +156,18 @@ const ForumPage: React.FC = () => {
 
       const renderPosts = (posts: Post[]) => {
         return posts.map((post) => (
-          <div key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
+          <div key={post.id} className='forum-card' >
+            <h3 className='forum-text forum-title'>{post.title}</h3>
+            <p className='forum-text'>{post.content}</p>
             <div>
               {post.comments.map((comment) => (
-                <p key={comment.id}>{comment.content}</p>
+                <p  className='forum-text' key={comment.id}>{comment.content}</p>
               ))}
             </div>
             <input
               type="text"
              value={newCommentContent[post.id] || ''}
-            
+             className='inputText'
               onChange={(e) => handleCommentChange(post.id, e.target.value)}/>
             
             <button onClick={() => addComment(post.id)}>Add Comment</button>
@@ -177,25 +179,16 @@ const ForumPage: React.FC = () => {
 
 
       return (
-        <div>
-            <div className="navButton" onClick={(() => navigate("/"))}>
+        <div className='background'>
+            <div className="navButton backButton" onClick={(() => navigate("/"))}>
                     Back
                 </div>
-          <h2>Forum Page</h2>
-          <h2>Create a New Post</h2>
-          <input
-            type="text"
-            value={newPostTitle}
-            onChange={(e) => setNewPostTitle(e.target.value)}
-            placeholder="Post Title"
-          />
-          <input
-            value={newPostContent}
-            onChange={(e) => setNewPostContent(e.target.value)}
-            placeholder="Post Content"
-          ></input>
-          <button onClick={createPost}>Add Post</button>
-          <div>
+          <h2 className='forumPageText'>Card Counting Forum</h2>
+  
+         <button onClick={() => {
+          navigate('/CreatePost', { state: { posts: posts} });
+         }} className='createPostButton'>Create Post</button>
+          <div className='forum-list'>
             {posts.length === 0 ? (
               <p>No posts available.</p>
             ) : (

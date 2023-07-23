@@ -68,7 +68,8 @@ const Game: React.FC = () => {
     }
 
     const handleGameResult = () => {
-        const result = checkplay(firstCard!, secondCard!, thirdCard!, buttonClick);
+        const result = checkplay(firstCard!, secondCard!, thirdCard!, buttonClick, false, false);
+        console.log('result', result);
         if (result === "Win" || result === "blackjack!") {
           return true;
         }
@@ -83,7 +84,7 @@ const Game: React.FC = () => {
                 <div className="gameCount">
                     <p>Number of Correct: {correctGameCount}</p>
                     <p>Number of Games played:{gameCount}</p>
-                    <p>Percentage correct: {(correctGameCount / gameCount * 100).toPrecision(3)}%</p></div >
+                    <p>Percentage correct: {gameCount!== 0 ? (correctGameCount / gameCount * 100).toPrecision(3) : 0}%</p></div >
 
             </div>
         <div className="dealerView">
