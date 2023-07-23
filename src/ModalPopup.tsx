@@ -2,7 +2,7 @@ import './ModalPopup.css'
 import { Card } from "./utils";
 import blackjackData from './utils/strategy';
 import { convertCardValueToNumber } from './Game';
-import CardCount from './CardCount';
+// import CardCount from './CardCount';
 
 interface ModalPopupProps {
     title: string;
@@ -13,7 +13,7 @@ interface ModalPopupProps {
     btnClicked: String;
     isCardCount?: boolean;
     win?: boolean;
-    correctAns?: String;
+    correctAns?: string;
 }
 
 // interface DataProps{} {

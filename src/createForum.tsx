@@ -21,9 +21,9 @@ const CreatePostPage: React.FC<{}> = () => {
     const [posts, setPosts] = useState<Post[]>([]);
     const [newPostTitle, setNewPostTitle] = useState('');
     const [newPostContent, setNewPostContent] = useState('');
-    type NewCommentContent = { [postId: string]: string };
+    // type NewCommentContent = { [postId: string]: string };
 
-    const [newCommentContent, setNewCommentContent] = useState<NewCommentContent>({});
+    // const [newCommentContent, setNewCommentContent] = useState<NewCommentContent>({});
 
     const navigate = useNavigate();
     

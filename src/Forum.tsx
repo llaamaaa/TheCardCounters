@@ -3,7 +3,7 @@ import { db } from './config';
 import { collection, getDocs, addDoc, doc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import './Forum.css'
-import CreatePostPage from './createForum';
+// import CreatePostPage from './createForum';
 
 interface Post {
   id: string;
@@ -22,8 +22,8 @@ interface Comment {
 const ForumPage: React.FC = () => {
     const navigate = useNavigate();
     const [posts, setPosts] = useState<Post[]>([]);
-    const [newPostTitle, setNewPostTitle] = useState('');
-    const [newPostContent, setNewPostContent] = useState('');
+    // const [newPostTitle, setNewPostTitle] = useState('');
+    // const [newPostContent, setNewPostContent] = useState('');
     // const [newCommentContent, setNewCommentContent] = useState<string>('');
     // const [commentContents, setCommentContents] = useState<{ [postId: string]: string }>({});
     type NewCommentContent = { [postId: string]: string };
@@ -71,31 +71,31 @@ const ForumPage: React.FC = () => {
     //   };
       
   
-    const createPost = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!newPostContent) {
-            return; // Exit early if the post content is empty
-          }
+    // const createPost = async (e: React.FormEvent) => {
+    //     e.preventDefault();
+    //     if (!newPostContent) {
+    //         return; // Exit early if the post content is empty
+    //       }
       
-        try {
-          const postDocRef = await addDoc(collection(db, 'posts'), {
-            title: newPostTitle,
-            content: newPostContent,
-            comments: [],
-          });
-          const newPost: Post = {
-            id: postDocRef.id,
-            title: newPostTitle,
-            content: newPostContent,
-            comments: [],
-          };
-          setPosts((prevPosts) => [...prevPosts, newPost]);
-          setNewPostTitle('');
-          setNewPostContent('');
-        } catch (error) {
-          console.log('Error creating post:', error);
-        }
-      };
+    //     try {
+    //       const postDocRef = await addDoc(collection(db, 'posts'), {
+    //         title: newPostTitle,
+    //         content: newPostContent,
+    //         comments: [],
+    //       });
+    //       const newPost: Post = {
+    //         id: postDocRef.id,
+    //         title: newPostTitle,
+    //         content: newPostContent,
+    //         comments: [],
+    //       };
+    //       setPosts((prevPosts) => [...prevPosts, newPost]);
+    //       setNewPostTitle('');
+    //       setNewPostContent('');
+    //     } catch (error) {
+    //       console.log('Error creating post:', error);
+    //     }
+    //   };
       
   
       const addComment = async (postId: string) => {

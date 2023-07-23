@@ -1,9 +1,8 @@
 import { Card, CardSuit, CardValue, myRandomInts, getValue} from "./utils";
 import "./Game.css"
 import { useEffect, useState } from "react";
-import ModalPopup, { checkplay } from "./ModalPopup";
+import ModalPopup from "./ModalPopup";
 import { useNavigate } from "react-router-dom";
-import { update } from "firebase/database";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 
 // import data from './utils/strategy.json';
@@ -63,10 +62,10 @@ const CardCount: React.FC = () => {
     }, [firstCard, thirdCard]);
 
       
-    const btnClickFn = (text: String) => {
-        setModalVisible(true);
-        setButtonClick(text);
-    }
+    // const btnClickFn = (text: String) => {
+    //     setModalVisible(true);
+    //     setButtonClick(text);
+    // }
 
     const renderStartScreen = () => {
         return <div>
